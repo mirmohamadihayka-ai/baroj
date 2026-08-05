@@ -3,25 +3,53 @@
 ## Product Identity
 - Name: Baroj
 - Category: AI-powered real estate platform.
-- Purpose: Build a calm, trustworthy, intelligent experience.
-
-## Mission
-Empower people to make confident property decisions.
+- Purpose: Build the most trusted AI-first real estate experience.
 
 ## Vision
-Become the intelligent operating system for the real estate ecosystem.
+Baroj aims to become the intelligent operating system for the real estate ecosystem by combining AI, human trust, and exceptional UX.
 
-## Core Principles
-1. Trust first.
-2. Simplicity over complexity.
-3. AI assists, humans decide.
-4. Fast, accessible, scalable.
+## Mission
+Help buyers, sellers, agents, and administrators make faster, safer, and more confident property decisions.
 
-## Users
+## Product Principles
+1. Trust before growth.
+2. AI augments people, never replaces judgment.
+3. Simplicity over feature overload.
+4. Consistency across every touchpoint.
+5. Performance is a feature.
+
+## Target Users
 - Buyers
 - Sellers
-- Agents
-- Admins
+- Real Estate Agents
+- Agencies
+- Administrators
 
-## AI Context
-When uncertain, prioritize user trust, clarity, maintainability, and consistency with the design system.
+## In Scope
+- Property discovery
+- AI search
+- AI assistant
+- CRM
+- Analytics
+
+## Out of Scope
+- Banking
+- Mortgage processing
+- Legal representation
+
+## Success Metrics
+- User trust
+- Task completion speed
+- AI usefulness
+- Retention
+- Performance
+
+## AI Rules
+Always follow the Brain documents. When documents conflict, prioritize Product, UX Rules, Design System, then Architecture.
+
+## References
+- 01-brand.md
+- 02-design-system.md
+- 03-user-psychology.md
+- 04-ux-rules.md
+- 05-architecture.md
