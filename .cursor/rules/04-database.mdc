@@ -1,0 +1,18 @@
+---
+description: Baroj database and data integrity rules
+paths:
+  - "**/*.sql"
+  - "**/*schema*"
+  - "**/*migration*"
+  - "**/*database*"
+---
+
+# Database Rules
+
+- Read `docs/05-architecture.md`, `docs/07-tech-stack.md`, and the repository's current schema/migrations before changing data structures.
+- Treat the live repository schema and migration history as authoritative for current state.
+- Preserve data integrity, constraints, indexes, and authorization boundaries.
+- Prefer additive, reversible migrations when possible.
+- Never delete or transform production data without explicit authorization and a safe migration plan.
+- Validate input before persistence and enforce critical invariants at the database boundary where appropriate.
+- Update affected tests, types, and documentation when schema contracts change.
