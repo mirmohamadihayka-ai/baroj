@@ -1,0 +1,19 @@
+---
+description: Baroj frontend implementation rules
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.css"
+  - "**/*.scss"
+---
+
+# Frontend Rules
+
+- Read `docs/01-brand.md`, `docs/02-design-system.md`, `docs/04-ux-rules.md`, `docs/06-coding-rules.md`, and `docs/08-components.md` when relevant.
+- Reuse existing design tokens and components before creating new ones.
+- Follow the existing React/Next.js rendering patterns.
+- Keep server/client boundaries intentional.
+- Handle loading, empty, error, disabled, and success states where applicable.
+- Preserve responsive behavior and accessibility.
+- Do not introduce arbitrary colors, spacing, typography, or interaction patterns when a design token exists.
+- Validate affected UI with the repository's configured checks and tests.
