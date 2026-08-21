@@ -1,0 +1,16 @@
+---
+description: Baroj Git and change-management rules
+paths:
+  - "**/*"
+---
+
+# Git Rules
+
+- Keep changes focused and logically scoped.
+- Inspect `git diff` before reporting completion.
+- Do not rewrite history or force-push unless explicitly authorized.
+- Do not commit secrets, local environment files, generated noise, or unrelated artifacts.
+- Use clear, imperative, task-oriented commit messages.
+- Keep one logical change per commit when practical.
+- Ensure tests and documentation affected by the change are included in the same logical change.
+- Never report a commit, PR, or validation step as completed unless it actually occurred.
