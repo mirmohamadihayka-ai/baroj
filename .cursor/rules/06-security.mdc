@@ -1,0 +1,16 @@
+---
+description: Baroj security and privacy rules
+paths:
+  - "**/*"
+---
+
+# Security Rules
+
+- Treat all external input, model output, uploaded content, and third-party data as untrusted.
+- Never hardcode or commit credentials, tokens, private keys, or secrets.
+- Enforce authentication and authorization on the server for protected operations.
+- Validate and sanitize data at trust boundaries.
+- Prevent injection, unsafe redirects, insecure file handling, and accidental data exposure.
+- Minimize collection, retention, and exposure of personal data.
+- Do not weaken security controls to make a task pass.
+- For security-sensitive changes, inspect the final diff and add targeted tests.
