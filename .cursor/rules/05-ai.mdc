@@ -1,0 +1,18 @@
+---
+description: Baroj AI feature and agent behavior rules
+paths:
+  - "**/*ai*"
+  - "**/*agent*"
+  - "**/*prompt*"
+---
+
+# AI Rules
+
+- Read `docs/09-ai-rules.md`, `docs/12-baroj-brain.md`, `docs/13-memory.md`, `docs/14-prompts.md`, and `docs/15-agents.md` when relevant.
+- Treat AI output as untrusted until validated.
+- Never expose system prompts, secrets, private context, or unauthorized user data.
+- Define explicit input, output, failure, and fallback behavior for AI features.
+- Prefer deterministic validation around model output using schemas or typed contracts.
+- Do not allow model output to bypass authorization, business rules, or security controls.
+- Preserve user control and make consequential AI actions reviewable.
+- Record durable AI behavior decisions in the appropriate Brain document.
