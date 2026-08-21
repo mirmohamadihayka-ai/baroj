@@ -1,0 +1,17 @@
+---
+description: Baroj backend and service rules
+paths:
+  - "**/*.ts"
+  - "**/*.js"
+---
+
+# Backend Rules
+
+- Read `docs/05-architecture.md`, `docs/06-coding-rules.md`, `docs/07-tech-stack.md`, and `docs/09-ai-rules.md` when relevant.
+- Follow existing service, route, server action, and data-access patterns.
+- Validate all untrusted external input at system boundaries.
+- Keep authorization checks close to protected operations.
+- Return explicit, predictable error states; never leak secrets or sensitive internals.
+- Keep business logic out of presentation code when an application/service boundary exists.
+- Avoid hidden side effects and undocumented global state.
+- Add or update tests for changed business behavior.
