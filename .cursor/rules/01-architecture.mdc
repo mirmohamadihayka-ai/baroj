@@ -1,0 +1,16 @@
+---
+description: Baroj architecture and structure rules
+paths:
+  - "**/*"
+---
+
+# Architecture Rules
+
+- Read `docs/05-architecture.md` and `docs/05-folder-structure.md` for architecture or structure changes.
+- Treat repository configuration and actual implementation as authoritative for current structure.
+- Preserve established boundaries between UI, application logic, data access, and infrastructure.
+- Prefer existing modules and interfaces over new parallel abstractions.
+- Keep dependency direction consistent with the documented architecture.
+- Do not move or rename public modules without explicit scope.
+- Do not introduce a new architectural pattern for a local problem.
+- Update the owning Brain document when a durable architectural decision changes.
