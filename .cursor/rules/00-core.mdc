@@ -1,0 +1,20 @@
+---
+description: Core Baroj execution rules for all AI coding work
+alwaysApply: true
+---
+
+# Baroj Core Rules
+
+- Read `AGENTS.md` first.
+- Read `CURSOR_CONTEXT.md` when present.
+- Read only the Brain documents relevant to the task.
+- Inspect existing code and patterns before editing.
+- Follow: UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT.
+- Keep changes minimal and scoped.
+- Reuse existing abstractions before creating new ones.
+- Never invent high-impact requirements.
+- Do not modify unrelated files.
+- Do not claim tests or checks that were not actually run.
+- Never expose or commit secrets.
+- Surface ambiguity when it can affect architecture, security, data integrity, public APIs, destructive behavior, or user trust.
+- Review the final diff before completion.
