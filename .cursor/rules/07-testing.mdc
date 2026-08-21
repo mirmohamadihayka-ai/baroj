@@ -1,0 +1,16 @@
+---
+description: Baroj validation and testing rules
+paths:
+  - "**/*"
+---
+
+# Testing Rules
+
+- Read the repository's test configuration before choosing commands.
+- Add or update tests when behavior changes; do not rely only on manual inspection for critical logic.
+- Test the smallest relevant scope first, then run broader checks when practical.
+- Cover success, failure, boundary, loading, empty, authorization, and regression cases as applicable.
+- For UI, verify accessibility and responsive behavior when affected.
+- For APIs/data, verify validation, authorization, error handling, and data integrity.
+- Never claim a test passed unless it actually ran and passed.
+- If validation cannot be run, report the exact limitation.
