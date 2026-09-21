@@ -86,6 +86,48 @@ Until an explicit Design System decision changes it, new UI work must not revert
 
 This section records the approved current direction. Detailed token scales, layout measurements, component contracts, motion values, and other implementation-level specifications are defined separately as they are finalized.
 
+## Color Token System
+
+### Brand Tokens
+
+- `color-brand-primary`: `#0F3D2E`
+- `color-brand-secondary`: `#2E7D5C`
+- `color-brand-accent`: `#D4AF37`
+- `color-background`: `#F7F6F2`
+- `color-text-primary`: `#1E1E1E`
+
+### Neutral Tokens
+
+- `neutral-0`: `#FFFFFF`
+- `neutral-50`: `#F7F6F2`
+- `neutral-100`: `#EDECE7`
+- `neutral-200`: `#DADAD6`
+- `neutral-400`: `#B8B8B8`
+- `neutral-600`: `#6B6B6B`
+
+### Status Tokens
+
+- `status-success`: `#22C55E`
+- `status-info`: `#3B82F6`
+- `status-warning`: `#F59E0B`
+- `status-error`: `#EF4444`
+- `status-new`: `#8B5CF6`
+
+### Gradient Tokens
+
+- `gradient-brand-green`: `#0F3D2E → #2E7D5C`
+- `gradient-gold`: `#D4AF37 → #F5D97A`
+
+### Usage Rules
+
+- Primary actions and trust-oriented emphasis use `color-brand-primary`.
+- Secondary emphasis may use `color-brand-secondary`.
+- Gold is reserved for value, premium emphasis, and selective highlights.
+- Warm cream is the default visual background.
+- Status colors are semantic and must not be repurposed as brand colors.
+- Gradients are selective accents, not default backgrounds.
+- New colors require an explicit Design System decision; do not invent ad-hoc colors.
+
 ## Design Tokens
 
 All production UI must use centralized design tokens for:
