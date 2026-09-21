@@ -88,6 +88,50 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Typography Token System
 
+## Spacing & Layout Token System
+
+### Spacing Scale
+
+Baroj uses an 8px spacing rhythm.
+
+| Token | Value | Typical Usage |
+|---|---:|---|
+| `space-1` | 8px | Tight control/icon spacing |
+| `space-2` | 16px | Default internal spacing |
+| `space-3` | 24px | Component groups |
+| `space-4` | 32px | Section internals |
+| `space-5` | 48px | Major section spacing |
+| `space-6` | 64px | Large section separation |
+| `space-7` | 96px | Hero/major page separation |
+
+Do not introduce arbitrary spacing values when an approved token is appropriate.
+
+### Responsive Grid
+
+- Mobile: 4-column grid.
+- Tablet: 8-column grid.
+- Desktop: 12-column grid.
+
+Grid behavior must remain responsive and content-driven. Components must not depend on fixed desktop-only positioning.
+
+### Layout Principles
+
+- Use generous whitespace to preserve Baroj's calm visual character.
+- Prefer consistent container alignment across page sections.
+- Keep primary content readable and visually focused.
+- Avoid unnecessary nested containers and excessive visual density.
+- Mobile layouts must remain usable without horizontal scrolling.
+
+### Open Layout Decisions
+
+The following values are not yet approved and must not be invented by implementation agents:
+
+- Exact container max-width.
+- Exact horizontal page padding per breakpoint.
+- Exact grid gutter per breakpoint.
+- Exact breakpoint pixel values.
+
+
 ### Typeface
 
 - Primary typeface: **IRANYekanX**.
