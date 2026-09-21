@@ -128,6 +128,127 @@ The implementation must not simulate a production result when a real search back
 - [ ] Client-side validation is treated as UX feedback, not a security boundary.
 - [ ] No unapproved API, database, ORM, auth, or external provider is introduced.
 
+## Property Search Backend Contract
+
+### Purpose
+
+Define the application-facing contract that will connect the existing Property Search UI to a future production search implementation without coupling the feature to transport, database, ORM, or external provider details.
+
+### Input Contract
+
+The application use case accepts normalized `PropertySearchCriteria`.
+
+The contract must represent only criteria required by the search use case. Transport-specific request objects must not become the domain contract.
+
+### Application Flow
+
+```text
+Property Search UI
+      |
+      v
+Normalized PropertySearchCriteria
+      |
+      v
+Property Search Application Use Case
+      |
+      v
+Search / Domain Rules
+      |
+      v
+Property Search Result Contract
+```
+
+### Result Contract
+
+The result contract must be application-facing and stable.
+
+It should distinguish at minimum:
+
+- Successful results.
+- Empty results.
+- Validation failures.
+- Recoverable search/application failures.
+
+The exact property/listing result schema is intentionally unresolved because the canonical Property / Listings ownership and read model have not yet been defined.
+
+### Boundary Rules
+
+The application contract must not:
+
+- Import ORM/database types.
+- Expose database records directly.
+- Depend on a specific HTTP framework.
+- Depend on an external property provider.
+- Depend on an AI provider.
+- Treat client-side validation as authoritative.
+- Encode UI-only state such as loading or visual component state.
+
+### Error Contract
+
+Search errors must be safe and explicit.
+
+At minimum, the application boundary must be able to distinguish:
+
+- Invalid search criteria.
+- No matching results.
+- Temporary/unavailable search dependency.
+- Unexpected application failure.
+
+Internal database, provider, stack-trace, or credential details must not cross the application boundary.
+
+The exact machine-readable error schema remains open.
+
+### Transport Mapping
+
+Transport is an adapter around the application contract.
+
+A future API, server action, or other transport may map:
+
+```text
+Transport Request
+      |
+      v
+PropertySearchCriteria
+      |
+      v
+Application Use Case
+      |
+      v
+Application Result
+      |
+      v
+Transport Response
+```
+
+No transport implementation is established by this document.
+
+### Current Implementation Boundary
+
+The current UI may continue to operate with local interaction state.
+
+Production integration should begin only when the application contract and canonical Property / Listings read model are explicitly implemented.
+
+Do not create mock backend endpoints, fake property data, or speculative persistence solely to satisfy this contract.
+
+### Acceptance Criteria
+
+- [ ] Application input is normalized `PropertySearchCriteria`.
+- [ ] Result handling distinguishes success, empty, validation failure, and recoverable failure.
+- [ ] Application contracts are independent from ORM/database/provider types.
+- [ ] UI state is not exposed as an application/domain contract.
+- [ ] Transport remains an adapter.
+- [ ] No fake backend or speculative persistence is introduced.
+- [ ] Unresolved schema decisions remain explicit.
+
+### Open Decisions
+
+- Canonical Property / Listings read model.
+- Exact `PropertySearchCriteria` production contract.
+- Exact result item schema.
+- Machine-readable error schema.
+- Transport implementation.
+- Authentication/authorization requirements.
+
 ## Validation
 
 At minimum:
