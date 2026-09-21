@@ -189,6 +189,10 @@ When implementation creates or changes a durable project-wide decision:
 
 ## Cross References
 
+- `16-development-protocol.md`
+- `17-github-linear-workflow.md`
+- `18-ai-safety-quality.md`
+
 - `09-ai-rules.md`
 - `12-baroj-brain.md`
 - `13-memory.md`
