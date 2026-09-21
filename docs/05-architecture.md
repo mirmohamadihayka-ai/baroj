@@ -542,6 +542,133 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Files & Media Boundary
+
+### Purpose
+
+Define the future boundary for uploaded files, property media, documents, and media processing without inventing storage providers, file schemas, processing pipelines, or retention policies.
+
+### Ownership
+
+Files / Media is the intended owner of:
+
+- File and media application contracts.
+- Upload and retrieval workflows.
+- Media metadata and processing contracts.
+- File access-control boundaries.
+- Media-specific lifecycle and retention behavior when explicitly defined.
+
+Other modules may request file/media operations through approved contracts but must not own storage infrastructure or provider integrations.
+
+### Boundary
+
+```text
+Feature / Application Use Case
+          |
+          v
+Files / Media Application Contract
+          |
+          v
+Media Domain Rules
+          |
+          v
+Storage / Processing Contract
+          |
+          v
+Infrastructure / External Provider
+```
+
+Files / Media concerns must remain separated from:
+
+- Feature-specific upload UI state.
+- Property Search state.
+- Direct object-storage SDK usage in application or domain code.
+- AI provider implementations.
+- Direct database/ORM access from presentation or feature code.
+
+### Canonical File vs Media Representation
+
+A file is an uploaded or stored digital object.
+
+Media may be a domain representation of a file used by another capability, such as property imagery or documents.
+
+The exact relationship between files, media, documents, and owning domains remains unresolved.
+
+Do not invent:
+
+- File fields.
+- Media fields.
+- MIME/type allowlists.
+- Size limits.
+- Storage paths.
+- Bucket names.
+- Processing states.
+- Thumbnail variants.
+- Retention periods.
+- Database tables.
+
+### Property / Listings Integration
+
+Property / Listings may own the business relationship between a property/listing and its media.
+
+Files / Media owns the technical file/media capability and contracts.
+
+Property Search may consume approved media read models but must not own canonical file storage or media processing.
+
+### Upload & Processing
+
+Upload, validation, transformation, optimization, scanning, and derivative generation belong behind approved application/infrastructure contracts.
+
+Processing must not silently mutate canonical domain state without an explicit application/domain action.
+
+### Security & Privacy
+
+Files and media may contain sensitive or private information.
+
+Access must respect Authentication & Authorization boundaries.
+
+Uploads and retrievals require explicit authorization where applicable.
+
+Do not expose storage credentials, internal storage paths, or provider-specific access mechanisms to clients.
+
+### AI Boundary
+
+AI may process approved files/media only through explicit application contracts.
+
+AI must not:
+
+- Establish ownership of uploaded files.
+- Bypass file access controls.
+- Persist media outside approved storage boundaries.
+- Treat unvalidated extracted content as trusted domain state.
+
+Any AI-extracted information intended for canonical state must pass through validation and domain/application rules.
+
+### Definition of Done
+
+The Files & Media boundary is ready for implementation only when:
+
+- File/media ownership is explicit.
+- Upload and retrieval contracts are defined.
+- Access-control requirements are documented.
+- Storage and processing boundaries are explicit.
+- Media/domain ownership relationships are documented.
+- Failure and processing semantics are defined.
+- Retention/privacy requirements are approved.
+
+### Open Decisions
+
+- File/media domain model.
+- Property/listing media ownership.
+- Storage strategy.
+- File validation policy.
+- Processing and derivative strategy.
+- Virus/security scanning requirements.
+- Retention and deletion policy.
+- Access/download strategy.
+- Caching/CDN strategy.
+- External storage providers.
+
 ## Maps & Location Boundary
 
 ### Purpose
