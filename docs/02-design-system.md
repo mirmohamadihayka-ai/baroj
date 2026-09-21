@@ -86,6 +86,41 @@ Until an explicit Design System decision changes it, new UI work must not revert
 
 This section records the approved current direction. Detailed token scales, layout measurements, component contracts, motion values, and other implementation-level specifications are defined separately as they are finalized.
 
+## Typography Token System
+
+### Typeface
+
+- Primary typeface: **IRANYekanX**.
+- No secondary UI typeface is approved at this stage.
+
+### Type Scale
+
+| Token | Size | Weight | Usage |
+|---|---:|---|---|
+| `type-display` | 40px | Bold (700) | Primary Hero headings |
+| `type-h1` | 32px | Bold (700) | Page titles |
+| `type-h2` | 24px | SemiBold (600) | Section headings |
+| `type-h3` | 20px | SemiBold (600) | Card and subsection headings |
+| `type-body-lg` | 18px | Regular (400) | Prominent supporting text |
+| `type-body` | 16px | Regular (400) | Primary body text |
+| `type-body-sm` | 14px | Regular (400) | Secondary/supporting text |
+| `type-caption` | 12px | Regular (400) | Captions and compact metadata |
+| `type-button` | 16px | SemiBold (600) | Button labels |
+
+### Approved Weights
+
+- Regular: 400
+- Medium: 500
+- SemiBold: 600
+- Bold: 700
+
+### Usage Rules
+
+- Prefer hierarchy through size and weight rather than decorative typography.
+- Do not introduce additional font families without an explicit Design System decision.
+- Do not create arbitrary font sizes when an approved token is applicable.
+- Typography must remain readable and calm across Baroj experiences.
+
 ## Color Token System
 
 ### Brand Tokens
