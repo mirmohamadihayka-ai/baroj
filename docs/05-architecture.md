@@ -542,6 +542,125 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Notifications Boundary
+
+### Purpose
+
+Define the future boundary for system-generated notifications without inventing notification channels, templates, providers, delivery guarantees, or persistence details.
+
+### Ownership
+
+Notifications is the intended owner of:
+
+- Notification intent and application workflows.
+- Notification delivery contracts.
+- Notification preference behavior when explicitly defined.
+- Notification-specific failure and retry semantics.
+
+Other modules may emit approved notification intents but must not own canonical notification state or delivery infrastructure.
+
+### Boundary
+
+```text
+Domain / Application Event or Use Case
+                |
+                v
+Notification Application Contract
+                |
+                v
+Notification Policy
+                |
+                v
+Delivery Contract
+                |
+                v
+Infrastructure / Provider
+```
+
+Notification concerns must remain separated from:
+
+- Feature-specific UI state.
+- Messaging conversation state.
+- Property Search state.
+- AI provider implementations.
+- Direct database/ORM access from presentation or feature code.
+
+### Notification vs Messaging
+
+Notifications and messaging are distinct concerns.
+
+Messaging represents communication between participants.
+
+Notifications represent system-generated communication about an event, state change, reminder, or other approved trigger.
+
+The exact relationship and shared infrastructure remain open.
+
+### Trigger and Delivery
+
+The architecture may support future notification triggers from approved application/domain events.
+
+Do not invent:
+
+- Event names.
+- Notification types.
+- Message templates.
+- Delivery channels.
+- Queue/topic names.
+- Retry counts.
+- Delivery guarantees.
+- Provider names.
+
+These require explicit product and infrastructure decisions.
+
+### User Preferences
+
+Notification preferences may be introduced through an approved user/security boundary.
+
+Until explicitly designed, do not invent preference fields, default settings, opt-in/opt-out behavior, or preference persistence.
+
+### AI Boundary
+
+AI may assist with notification content generation only through approved application contracts.
+
+AI must not independently:
+
+- Trigger protected notifications.
+- Change notification preferences.
+- Bypass authorization.
+- Become the source of truth for delivery state.
+
+### Security
+
+Notifications must respect Authentication & Authorization boundaries and any privacy requirements attached to the underlying data.
+
+Sensitive notification content must pass through approved application and infrastructure boundaries.
+
+### Definition of Done
+
+The Notifications boundary is ready for implementation only when:
+
+- Notification ownership is explicit.
+- Trigger contracts are documented.
+- Notification policy is defined.
+- Delivery contracts are explicit.
+- Failure/retry semantics are documented.
+- Preference behavior is defined where applicable.
+- Security and privacy requirements are documented.
+- External delivery providers are explicitly selected if needed.
+
+### Open Decisions
+
+- Notification domain model.
+- Trigger/event contracts.
+- Notification channels.
+- Delivery guarantees.
+- Retry and failure strategy.
+- Template/content strategy.
+- User preference model.
+- Persistence mapping.
+- External notification providers.
+- Observability and audit requirements.
+
 ## Messaging & Communication Boundary
 
 ### Purpose
