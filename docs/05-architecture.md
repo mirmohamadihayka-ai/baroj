@@ -178,6 +178,17 @@ Interpretation:
 
 No layer may bypass the intended boundaries without an explicit architectural reason.
 
+## Layer Rules
+
+Keep these four rules simple and enforceable:
+
+1. **Presentation shows and collects.**
+2. **Application coordinates.**
+3. **Domain decides business rules.**
+4. **Infrastructure connects to technical/external systems.**
+
+If a piece of code is difficult to place, do not guess. Inspect the existing architecture and, when the decision is durable or high-impact, request clarification.
+
 ## Request Flow
 
 A typical request should follow this shape:
@@ -356,6 +367,29 @@ When generating or modifying code:
 - Preserves clear domain/module boundaries.
 - Avoids premature distributed-system complexity.
 - Allows future extraction when a concrete scaling, ownership, deployment, or reliability requirement justifies it.
+
+**Status:** Accepted.
+
+**Date:** 2026-08-05
+
+### ADR-002 — System Layers and Dependency Direction
+
+**Decision:** Baroj uses four architectural layers: Presentation, Application, Domain, and Infrastructure.
+
+**Dependency direction:**
+- Presentation -> Application -> Domain.
+- Infrastructure implements contracts required by higher-level layers and must not own domain policy.
+
+**Simple rule:**
+- Presentation shows and collects.
+- Application coordinates.
+- Domain decides business rules.
+- Infrastructure connects to technical/external systems.
+
+**Rationale:**
+- Keeps responsibilities clear.
+- Prevents UI, business rules, and infrastructure details from becoming mixed together.
+- Makes the Modular Monolith easier to maintain and keeps future module extraction possible without prematurely creating distributed services.
 
 **Status:** Accepted.
 
