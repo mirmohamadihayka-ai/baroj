@@ -47,6 +47,106 @@ Dependencies:
 - ...
 ```
 
+# Property Search — Feature Contract
+
+## Feature ID
+
+FEAT-001
+
+## Name
+
+Property Search
+
+## Problem
+
+Users need a structured way to define property search criteria before a real search capability is connected.
+
+## User Outcome
+
+Users can enter and revise search criteria, understand validation feedback, remove active filters, retry or clear the interaction, and receive explicit UI feedback for relevant states.
+
+## Current Scope
+
+The established foundation owns:
+- Search criteria shape.
+- Search form interaction.
+- Criteria normalization.
+- Search-specific validation.
+- Active-filter representation and removal.
+- Search UI states.
+- Accessibility and responsive interaction behavior.
+
+## Current Non-Goals
+
+The current foundation does not establish:
+- Canonical property/listing persistence.
+- Database/ORM implementation.
+- Search API implementation.
+- Authentication or authorization.
+- Property ranking/recommendation logic.
+- AI provider behavior.
+- External property-data provider integration.
+
+These remain outside the current Property Search boundary until explicitly defined.
+
+## Architectural Ownership
+
+Property Search is the established business-facing module.
+
+It may consume approved application/domain contracts but must not own canonical property persistence, infrastructure implementations, or unrelated global policy.
+
+## Search Contract Boundary
+
+The UI submits normalized PropertySearchCriteria.
+
+The production search implementation must be introduced behind an explicit application/service boundary.
+
+The UI must not:
+- Query the database directly.
+- Depend on an ORM.
+- Depend on an external property provider.
+- Treat client-side validation as the authoritative security or data-integrity boundary.
+
+## Required States
+
+Applicable states include:
+- Idle.
+- Loading.
+- Success.
+- Empty.
+- Error.
+
+The implementation must not simulate a production result when a real search backend is not connected.
+
+## Acceptance Criteria
+
+- [ ] Criteria are normalized before application-level search handling.
+- [ ] Invalid criteria are rejected with field/form feedback.
+- [ ] Active filters can be inspected and removed.
+- [ ] Loading, success, empty, and error states have explicit ownership.
+- [ ] Search UI remains independent from persistence and provider implementations.
+- [ ] Client-side validation is treated as UX feedback, not a security boundary.
+- [ ] No unapproved API, database, ORM, auth, or external provider is introduced.
+
+## Validation
+
+At minimum:
+- Typecheck.
+- Build.
+- Existing property-search validation behavior.
+- Relevant accessibility behavior.
+- Regression check for loading/error/empty/success state handling.
+
+## Open Decisions
+
+- Search application/API contract.
+- Canonical property/listing read model.
+- Persistence implementation.
+- Search query implementation.
+- Authentication/authorization requirements.
+- External property-data sources.
+
+
 ## Feature Lifecycle
 
 ```text
