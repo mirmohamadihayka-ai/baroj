@@ -4,7 +4,7 @@
 
 Define the mandatory execution lifecycle for AI coding agents working on Baroj.
 
-This protocol converts a task into a controlled sequence: understand → inspect → plan → implement → test → verify → review → report.
+This protocol expands the canonical agent lifecycle into concrete validation activities. The canonical lifecycle is UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT. TEST and VERIFY are activities inside VALIDATE.
 
 ## Principles
 
@@ -67,7 +67,11 @@ Do not expand scope during implementation without justification.
 - Do not add dependencies without a clear requirement.
 - Do not modify unrelated files.
 
-### 5. TEST
+### 5. VALIDATE
+
+Validation contains the following activities:
+
+#### Test
 
 Run the narrowest relevant checks first, then broader checks when required.
 
@@ -84,7 +88,7 @@ For UI changes also validate responsive, keyboard, accessibility, loading, empty
 
 For backend/data changes also validate input boundaries, authorization, contracts, migrations, and data integrity.
 
-### 6. VERIFY
+#### Verify
 
 Verify the implementation against:
 
@@ -97,7 +101,7 @@ Verify the implementation against:
 
 Never infer a passing result from code inspection alone when execution is required.
 
-### 7. REVIEW
+### 6. REVIEW
 
 Inspect the final diff before completion.
 
@@ -115,7 +119,7 @@ Check for:
 
 If defects are found, fix them and repeat validation.
 
-### 8. REPORT
+### 7. REPORT
 
 Return a concise factual report:
 
