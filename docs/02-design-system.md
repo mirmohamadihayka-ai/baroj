@@ -92,6 +92,71 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Motion & Interaction System
 
+## AI Design System Rules
+
+AI coding agents must treat this document as the source of truth for Baroj visual and interaction decisions.
+
+### Required AI Workflow
+
+Before changing UI:
+
+1. Read the relevant Design System sections.
+2. Inspect existing components and token usage.
+3. Reuse existing tokens and components when applicable.
+4. Preserve responsive, RTL, accessibility, and component-state rules.
+5. Implement the smallest coherent change.
+6. Validate the affected behavior.
+7. Report what changed and any unresolved Design System decisions.
+
+### AI Must Not
+
+- Invent new brand colors when an approved token exists.
+- Replace IRANYekanX with another primary UI typeface.
+- Introduce arbitrary spacing, radius, typography, border, shadow, or motion values when an approved token or rule applies.
+- Recreate an existing shared component locally.
+- Introduce decorative motion that conflicts with the calm Baroj experience.
+- Ignore RTL behavior.
+- Remove accessibility behavior to simplify implementation.
+- Treat client-side validation as a security boundary.
+- Put business rules into presentation components.
+- Add a new shared component without a demonstrated reuse need.
+
+### Design Change Boundary
+
+A change that affects any of the following requires explicit Design System consideration:
+
+- Brand colors.
+- Typography.
+- Spacing and layout tokens.
+- Radius.
+- Borders.
+- Shadows/elevation.
+- Motion.
+- Responsive behavior.
+- RTL behavior.
+- Accessibility behavior.
+- Shared component contracts.
+
+If an exact value is not defined by the Design System, the agent must not silently establish a new system-wide token. It should either use an existing semantic rule or identify the value as an open decision.
+
+## Design System Definition of Done
+
+A UI/design-system change is complete only when:
+
+- Existing Design System rules were inspected.
+- Approved tokens are reused.
+- No conflicting visual language was introduced.
+- Responsive behavior is preserved.
+- RTL behavior is preserved.
+- Applicable component states are covered.
+- Accessibility requirements are preserved.
+- Reduced-motion behavior is preserved where motion exists.
+- Existing shared components are reused where appropriate.
+- The affected implementation is validated.
+- Any unresolved design decision is explicitly reported.
+
+
+
 ### Motion Principles
 
 Baroj motion should reinforce:
