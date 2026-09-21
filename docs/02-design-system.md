@@ -36,6 +36,56 @@ Avoid:
 - Unnecessary animations
 - Inconsistent component styling
 
+## Approved Visual Foundation
+
+The following visual foundation is approved as the current Baroj design direction and is the baseline for future Design System tokenization.
+
+### Brand Colors
+
+| Role | Name | Value |
+|---|---|---|
+| Primary | Forest Green | `#0F3D2E` |
+| Secondary | Emerald Green | `#2E7D5C` |
+| Accent | Gold | `#D4AF37` |
+| Background | Warm Cream | `#F7F6F2` |
+| Text Primary / Dark | Deep Charcoal | `#1E1E1E` |
+
+### Typography Direction
+
+- Primary typeface: **IRANYekanX**.
+- Typography must remain readable, calm, and structured.
+- The approved visual hierarchy uses clear weight and size differences rather than decorative treatment.
+
+### Experience Character
+
+Baroj should communicate:
+
+- Calm
+- Trust
+- Clarity
+- Stability
+- Modernity
+- Premium quality without excessive luxury styling
+
+### Visual Language
+
+The current Baroj visual language favors:
+
+- Spacious layouts.
+- Warm light surfaces.
+- Forest/emerald green for primary interaction and trust-oriented hierarchy.
+- Gold for value, premium emphasis, and selective highlights.
+- Architectural and nature-oriented imagery.
+- Soft shapes and restrained depth.
+- Clear, limited primary calls to action.
+- Search as a central interaction in property discovery experiences.
+
+### Current Direction Lock
+
+Until an explicit Design System decision changes it, new UI work must not revert to the previously documented blue-primary direction or introduce a different primary typeface without an explicit design-system change.
+
+This section records the approved current direction. Detailed token scales, layout measurements, component contracts, motion values, and other implementation-level specifications are defined separately as they are finalized.
+
 ## Design Tokens
 
 All production UI must use centralized design tokens for:
