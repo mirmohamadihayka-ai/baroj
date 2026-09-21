@@ -542,6 +542,114 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Property / Listings Domain Boundary
+
+### Purpose
+
+Define the future ownership boundary for canonical property and listing data without inventing a schema or implementation before the domain is explicitly designed.
+
+### Ownership
+
+Property / Listings is the intended canonical owner of:
+
+- Property identity and canonical property data.
+- Listing identity and listing lifecycle data.
+- Property/listing business invariants.
+- Canonical read/write domain contracts.
+
+Property Search is a consumer of search-facing data, not the canonical owner.
+
+### Boundary
+
+```text
+Property Search Application
+          |
+          v
+Search-facing Read Contract
+          |
+          v
+Property / Listings Domain
+          |
+          v
+Persistence Contract
+          |
+          v
+Infrastructure
+```
+
+Property / Listings must not depend on:
+
+- Property Search UI components.
+- Search form state.
+- AI provider SDKs.
+- Transport-specific request/response objects.
+- ORM/database implementation details.
+
+### Canonical Data vs Search Data
+
+Canonical property/listing state belongs to Property / Listings.
+
+Search-facing data may be a read model optimized for discovery, filtering, or ranking, but it must not silently become the canonical property/listing source of truth.
+
+### Property and Listing Relationship
+
+The exact relationship between Property and Listing is intentionally unresolved.
+
+Do not invent:
+
+- Entity fields.
+- Listing status values.
+- Ownership relationships.
+- Pricing rules.
+- Availability rules.
+- Database tables.
+- Search indexes.
+
+These require an explicit domain/data decision.
+
+### External Property Sources
+
+External property sources are integrations.
+
+They may provide data that is mapped into the approved Property / Listings boundary, but an external provider must not automatically become the canonical owner.
+
+Provider mapping, freshness, conflict resolution, and synchronization behavior remain open.
+
+### AI Boundary
+
+AI may assist application use cases around property data, but AI output does not establish canonical property/listing state.
+
+Any AI-derived property data must pass through:
+
+1. Input validation.
+2. Application rules.
+3. Domain validation.
+4. Explicit persistence rules.
+
+### Domain Definition of Done
+
+The Property / Listings boundary is ready for implementation only when:
+
+- Canonical ownership is explicitly defined.
+- Property/listing invariants are documented.
+- Domain contracts are explicit.
+- Search-facing read contracts are defined.
+- Persistence mapping is approved.
+- External-source behavior is documented where applicable.
+- Security and authorization boundaries are defined.
+
+### Open Decisions
+
+- Property domain model.
+- Listing domain model and lifecycle.
+- Property/listing relationship.
+- Canonical schema.
+- Search read model.
+- External data-source strategy.
+- Synchronization/conflict rules.
+- Persistence mapping.
+- Authorization model.
+
 ## Persistence & Data Ownership Model
 
 ### Purpose
