@@ -542,6 +542,129 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Payments & Transactions Boundary
+
+### Purpose
+
+Define the future boundary for payments and financial transactions without inventing payment providers, transaction schemas, currencies, settlement rules, or persistence details.
+
+### Ownership
+
+Payments / Transactions is the intended owner of:
+
+- Payment and transaction domain behavior.
+- Financial transaction lifecycle rules.
+- Payment application workflows.
+- Transaction integrity and reconciliation contracts.
+- Payment-specific security requirements.
+
+Other modules may request approved payment operations but must not own canonical financial transaction state.
+
+### Boundary
+
+```text
+Feature / Application Use Case
+          |
+          v
+Payment Application Contract
+          |
+          v
+Payment / Transaction Domain
+          |
+          v
+Payment Provider Contract
+          |
+          v
+Infrastructure / External Provider
+```
+
+Payment concerns must remain separated from:
+
+- Feature-specific UI state.
+- Property Search state.
+- Messaging and notification state.
+- AI provider implementations.
+- Direct database/ORM access from presentation or feature code.
+
+### Transaction Integrity
+
+Financial state must be treated as trusted application/domain state.
+
+Do not allow client-side UI state, AI output, or external provider responses to directly establish trusted transaction state without application-level validation and reconciliation.
+
+Do not invent:
+
+- Transaction fields.
+- Payment states.
+- Currency rules.
+- Amount semantics.
+- Refund rules.
+- Settlement rules.
+- Idempotency strategy.
+- Database tables.
+
+These require explicit financial and domain decisions.
+
+### External Payment Providers
+
+External payment providers are infrastructure integrations behind an approved payment contract.
+
+Provider-specific APIs, SDKs, webhooks, credentials, and implementation details must not leak into the domain or presentation layers.
+
+The canonical ownership of financial state remains inside the approved application/domain boundary.
+
+### Security
+
+Payment operations must respect Authentication & Authorization boundaries and applicable privacy/security requirements.
+
+Sensitive payment data and credentials must remain inside approved infrastructure/security boundaries.
+
+Do not store or expose payment credentials or provider secrets in UI code, prompts, logs, or domain objects.
+
+### AI Boundary
+
+AI may assist with non-authoritative payment-related experiences only where explicitly approved.
+
+AI must not:
+
+- Authorize or confirm financial transactions.
+- Invent transaction state.
+- Modify payment records without an authorized application action.
+- Bypass financial validation or reconciliation.
+- Receive sensitive payment credentials unless an explicit security design permits it.
+
+### Property / Listings Integration
+
+Property / Listings may initiate approved payment use cases in future workflows, but must not own payment processing or canonical transaction state.
+
+The exact financial workflows remain intentionally unresolved.
+
+### Definition of Done
+
+The Payments & Transactions boundary is ready for implementation only when:
+
+- Financial ownership is explicit.
+- Transaction lifecycle rules are documented.
+- Payment application contracts are defined.
+- Provider integration boundaries are explicit.
+- Idempotency and reconciliation requirements are documented.
+- Security requirements are approved.
+- Failure and recovery behavior is defined.
+- Persistence mapping is approved.
+
+### Open Decisions
+
+- Payment domain model.
+- Transaction lifecycle.
+- Currency and amount semantics.
+- Payment provider strategy.
+- Idempotency model.
+- Refund and reversal behavior.
+- Settlement/reconciliation strategy.
+- Persistence mapping.
+- Audit requirements.
+- Financial security/compliance requirements.
+
 ## Notifications Boundary
 
 ### Purpose
