@@ -92,6 +92,53 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Motion & Interaction System
 
+## Design System Implementation Readiness
+
+The Design System is ready to guide implementation for the currently approved foundations.
+
+### Implementation-Ready
+
+- Brand color tokens.
+- Typography tokens and IRANYekanX direction.
+- 8px spacing rhythm.
+- Responsive grid structure: 4 / 8 / 12 columns.
+- Component layers and initial inventory.
+- Component state model.
+- Radius tokens.
+- RTL baseline rules.
+- WCAG 2.2 AA baseline.
+- Motion principles and reduced-motion requirements.
+- AI design-system workflow and Definition of Done.
+
+### Explicitly Not Ready for System-Wide Tokenization
+
+The following remain open and must not be silently invented by implementation agents:
+
+- Exact responsive breakpoints.
+- Container max-width.
+- Horizontal page padding per breakpoint.
+- Grid gutters per breakpoint.
+- Exact border widths.
+- Shadow/elevation tokens.
+- Detailed motion duration/easing tokens.
+- Full directional-icon RTL matrix.
+- Detailed accessibility test tooling/runner.
+
+### Implementation Gate
+
+A production UI implementation may proceed when it only consumes approved tokens/rules.
+
+If implementation requires an unresolved value:
+
+1. Reuse the closest existing semantic rule when it is sufficient.
+2. Do not create a system-wide token silently.
+3. Mark the unresolved value as an explicit Design System decision.
+4. Keep the implementation scoped so the later decision can be changed without broad refactoring.
+
+### Readiness Principle
+
+Implementation readiness does not mean the Design System is frozen forever. It means the approved foundation is stable enough to build against while unresolved decisions remain visible and controlled.
+
 ## AI Design System Rules
 
 AI coding agents must treat this document as the source of truth for Baroj visual and interaction decisions.
