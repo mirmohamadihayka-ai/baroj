@@ -394,3 +394,138 @@ When generating or modifying code:
 **Status:** Accepted.
 
 **Date:** 2026-08-05
+
+
+## Core Module Boundaries
+
+Baroj uses explicit module boundaries inside the Modular Monolith.
+
+A **feature** describes a user-facing capability or workflow.
+
+A **module** owns a coherent business/application responsibility, its concepts and rules, and exposes a small public interface to the rest of the system.
+
+Modules communicate in-process. Internal modules must not communicate through network calls merely to simulate microservices.
+
+### Initial Module Map
+
+The initial module map is intentionally small and based only on responsibilities currently established by the project.
+
+| Module | Responsibility | Status |
+|---|---|---|
+| Property Search | Search, filtering, criteria handling, and search-related user workflows for properties | Established |
+| AI | Application-level AI capability, gateway, provider isolation, structured-output validation, and trust boundary | Established as a capability |
+| Shared/Core | Only genuinely cross-cutting primitives, contracts, and utilities that have clear ownership | Restricted |
+| Property / Listings | Ownership of canonical property/listing concepts and lifecycle | Not yet separated as an independent module |
+
+The absence of a module from this list is intentional. Do not create new business modules such as Users, Authentication, Payments, Messaging, Maps, or similar domains until a concrete requirement and ownership boundary exists.
+
+### Property Search Boundary
+
+Property Search is the first concrete business-facing module established by the current implementation.
+
+It owns:
+- Search criteria.
+- Search form and interaction contracts.
+- Search-specific validation and normalization.
+- Search-specific filtering behavior.
+- Search-specific UI/application workflows.
+
+It must not own:
+- Canonical property persistence.
+- Authentication or user identity.
+- Payment logic.
+- AI provider implementation.
+- Database/ORM implementation.
+- Global application policy unrelated to property search.
+
+Property Search may depend on:
+- Shared contracts that are genuinely cross-cutting.
+- Application services/use cases required for search.
+- Domain contracts representing data or capabilities it legitimately consumes.
+- AI through the approved AI application boundary when an actual use case requires it.
+
+Property Search must not bypass:
+- Application boundaries.
+- Domain rules.
+- Infrastructure adapters.
+- Security and authorization checks.
+
+### AI Boundary and Ownership
+
+AI is currently treated as a cross-cutting application capability rather than an independent business domain.
+
+The AI capability owns:
+- AI gateway contracts.
+- Provider adapters.
+- Structured-output validation.
+- Provider-specific configuration isolation.
+- AI trust-boundary handling.
+
+It does not own business decisions that belong to a domain module.
+
+Domain modules may request AI capabilities through an explicit application-level contract. Provider SDKs and provider-specific behavior must remain outside domain logic.
+
+### Shared/Core Boundary
+
+Shared/Core is a restricted area, not a general-purpose dumping ground.
+
+A concept belongs in Shared/Core only when:
+1. It is genuinely used across multiple modules.
+2. It has no stronger domain owner.
+3. Moving it there does not erase a meaningful module boundary.
+
+Business logic must not be moved into Shared/Core simply because multiple files currently need it.
+
+### Module Public API Rule
+
+Each module should expose the smallest intentional public API required by other parts of Baroj.
+
+Prefer:
+
+```text
+Other Module
+    |
+    v
+Module Public API
+    |
+    v
+Module Internal Implementation
+```
+
+Do not import another module's internal components, hooks, repositories, schemas, or infrastructure implementations unless an explicit architectural decision allows it.
+
+### Cross-Module Dependency Rules
+
+- Dependencies must be explicit.
+- A module must not reach directly into another module's internal implementation.
+- Cross-module business rules require an explicit application/domain boundary.
+- Infrastructure details must not leak across module boundaries.
+- Circular module dependencies are prohibited.
+- A module may consume a capability without becoming the owner of that capability.
+- If ownership is unclear, do not guess; stop and clarify before creating a durable boundary.
+
+### Future Module Extraction Signal
+
+A module may become a candidate for independent service extraction only when there is a concrete reason such as:
+- Independent scaling requirements.
+- Independent deployment requirements.
+- Clear team/ownership separation.
+- Reliability or isolation requirements.
+- A meaningful infrastructure boundary that justifies distribution.
+
+Future extraction is not a reason to introduce network communication today.
+
+### ADR-003 — Initial Core Module Boundaries
+
+**Decision:** Baroj will begin with a small module map centered on the established Property Search capability, with AI treated as an application-level capability and Shared/Core kept restricted.
+
+**Rationale:**
+- Prevents premature domain fragmentation.
+- Gives the existing Property Search implementation a clear architectural home.
+- Keeps AI provider concerns isolated from business modules.
+- Prevents Shared/Core from becoming an uncontrolled dependency bucket.
+- Leaves future business modules open until real requirements establish their ownership.
+
+**Status:** Accepted.
+
+**Date:** 2026-08-05
