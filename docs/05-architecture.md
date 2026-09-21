@@ -542,6 +542,124 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Maps & Location Boundary
+
+### Purpose
+
+Define the future boundary for geographic data, location services, maps, geocoding, and spatial capabilities without inventing providers, coordinate schemas, map libraries, or persistence details.
+
+### Ownership
+
+Maps / Location is the intended owner of:
+
+- Location-related application contracts.
+- Geospatial domain behavior where applicable.
+- Geocoding and reverse-geocoding contracts.
+- Map and location service integration boundaries.
+- Location-specific privacy and security requirements.
+
+Other modules may consume approved location contracts but must not own the location infrastructure or provider integration.
+
+### Boundary
+
+```text
+Feature / Application Use Case
+          |
+          v
+Location Application Contract
+          |
+          v
+Location / Geospatial Domain
+          |
+          v
+Maps / Geocoding Contract
+          |
+          v
+Infrastructure / External Provider
+```
+
+Location concerns must remain separated from:
+
+- Feature-specific UI state.
+- Property Search business rules that are not geographic.
+- Direct map-provider SDK usage in domain/application code.
+- AI provider implementations.
+- Direct database/ORM access from presentation or feature code.
+
+### Location Data
+
+Location data may include user-provided, property-related, or externally resolved geographic information.
+
+Do not invent:
+
+- Coordinate fields or formats.
+- Address schemas.
+- Region hierarchies.
+- Distance units.
+- Geospatial indexes.
+- Map layers.
+- Location precision rules.
+
+These require explicit product, domain, privacy, and infrastructure decisions.
+
+### Property / Listings Integration
+
+Property / Listings may own canonical property-related location data when the domain model explicitly establishes that ownership.
+
+Property Search may consume a search-facing geographic representation for filtering or discovery, but must not become the canonical owner of property location data.
+
+Maps / Location provides capabilities and contracts; it does not automatically own every location value used by the platform.
+
+### Privacy & Security
+
+Location can be sensitive data.
+
+Location operations must respect Authentication & Authorization boundaries and approved privacy requirements.
+
+Do not expose precise location unnecessarily, and do not persist or transmit location data outside approved boundaries.
+
+### AI Boundary
+
+AI may assist with location-related experiences such as natural-language location interpretation only through approved application contracts.
+
+AI must not:
+
+- Establish canonical location state without validation.
+- Bypass location privacy or authorization rules.
+- Directly control map/geocoding infrastructure.
+- Treat inferred location as trusted geographic data without explicit validation.
+
+### External Providers
+
+External map, geocoding, and location providers are infrastructure integrations.
+
+Provider-specific APIs, SDKs, credentials, quotas, and implementation details must not leak into domain or presentation layers.
+
+### Definition of Done
+
+The Maps & Location boundary is ready for implementation only when:
+
+- Location ownership is explicit.
+- Geographic contracts are documented.
+- Provider integration boundaries are explicit.
+- Privacy and precision requirements are approved.
+- Property/location ownership is defined.
+- Failure and fallback behavior is documented.
+- Persistence and caching decisions are approved where applicable.
+
+### Open Decisions
+
+- Location domain model.
+- Property/location ownership.
+- Coordinate and address representation.
+- Geocoding strategy.
+- Map provider strategy.
+- Distance and spatial-query semantics.
+- Precision/privacy policy.
+- Caching strategy.
+- Persistence mapping.
+- Quota and failure handling.
+
 ## Payments & Transactions Boundary
 
 ### Purpose
