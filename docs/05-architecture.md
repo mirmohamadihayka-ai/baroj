@@ -542,6 +542,138 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Search & Discovery Boundary
+
+### Purpose
+
+Define the future boundary for property discovery, search execution, filtering, ranking, and search-facing read models without inventing indexing technology, ranking formulas, APIs, or persistence details.
+
+### Ownership
+
+Search & Discovery is the intended owner of:
+
+- Search application workflows.
+- Search criteria normalization and validation.
+- Search-facing read contracts.
+- Filtering and discovery behavior.
+- Ranking orchestration when explicitly defined.
+- Search-specific performance and failure behavior.
+
+Property / Listings remains the canonical owner of property and listing data.
+
+### Boundary
+
+```text
+User / Feature
+     |
+     v
+Search Application Contract
+     |
+     +--> Criteria Validation / Normalization
+     |
+     +--> Search & Discovery Rules
+     |
+     v
+Search-facing Read Contract
+     |
+     v
+Property / Listings Data Boundary
+     |
+     v
+Infrastructure / Search Implementation
+```
+
+Search & Discovery must not become the canonical owner of property/listing state.
+
+### Criteria vs Canonical Data
+
+Search criteria describe what a user is looking for.
+
+Canonical property/listing data describes what the platform knows about properties and listings.
+
+Search criteria must not be persisted or transformed into canonical property/listing state unless an explicit product/domain use case defines that behavior.
+
+### Read Models
+
+Search may consume a dedicated read model optimized for discovery.
+
+A search read model:
+
+- Is derived from approved canonical sources.
+- Has an explicit contract.
+- May be denormalized or optimized independently.
+- Must not silently become the canonical source of truth.
+
+The exact read-model shape and synchronization strategy remain open.
+
+### Filtering & Ranking
+
+Filtering and ranking are separate concerns.
+
+Filtering determines whether a candidate satisfies approved search criteria.
+
+Ranking determines ordering only when ranking behavior is explicitly defined.
+
+Do not invent:
+
+- Ranking formulas.
+- Weight values.
+- Scoring models.
+- Recommendation logic.
+- Search relevance rules.
+- Personalization rules.
+
+### AI Boundary
+
+AI may assist with natural-language search interpretation or approved discovery experiences through the application AI boundary.
+
+AI must not:
+
+- Bypass search criteria validation.
+- Establish canonical property/listing state.
+- Invent unavailable property/listing facts.
+- Replace deterministic domain rules where those rules are required.
+
+AI-derived search criteria must be validated and normalized before entering search execution.
+
+### External Search Infrastructure
+
+Search indexes, databases, geospatial systems, caches, and external search providers are infrastructure concerns behind approved contracts.
+
+Do not couple Search & Discovery application logic directly to a specific search engine, ORM, database, or provider before the architecture decision is made.
+
+### Property Search Integration
+
+The existing Property Search feature is the current presentation/application entry point for search interaction.
+
+Its UI state and interaction contracts must remain separate from the future Search & Discovery domain/application boundary.
+
+### Definition of Done
+
+The Search & Discovery boundary is ready for implementation only when:
+
+- Search ownership is explicit.
+- Criteria contracts are defined.
+- Search-facing read contracts are defined.
+- Filtering and ranking responsibilities are documented.
+- Canonical Property / Listings ownership remains explicit.
+- Search infrastructure boundaries are approved.
+- AI-assisted search behavior is bounded.
+- Failure and performance expectations are documented.
+
+### Open Decisions
+
+- Search domain/application model.
+- Search read-model shape.
+- Indexing strategy.
+- Search engine/provider.
+- Filtering semantics.
+- Ranking/relevance model.
+- Personalization strategy.
+- Geospatial search strategy.
+- Synchronization/update strategy.
+- Caching strategy.
+
 ## Files & Media Boundary
 
 ### Purpose
