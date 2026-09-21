@@ -41,8 +41,10 @@ docs/
 ├── 02-design-system.md
 ├── 03-user-psychology.md
 ├── 04-ux-rules.md
+├── 05-architecture.md
 ├── 05-folder-structure.md
 ├── 06-coding-rules.md
+├── 06-frontend.md
 ├── 07-tech-stack.md
 ├── 08-components.md
 ├── 09-ai-rules.md
@@ -76,6 +78,7 @@ Use the smallest relevant set:
 
 - `docs/05-architecture.md`
 - `docs/05-folder-structure.md`
+- `docs/06-frontend.md`
 - `docs/06-coding-rules.md`
 - `docs/07-tech-stack.md`
 - `docs/08-components.md`
@@ -83,6 +86,9 @@ Use the smallest relevant set:
 ### AI / Agent Work
 
 - `docs/09-ai-rules.md`
+- `docs/16-development-protocol.md`
+- `docs/17-github-linear-workflow.md`
+- `docs/18-ai-safety-quality.md`
 - `docs/12-baroj-brain.md`
 - `docs/13-memory.md`
 - `docs/14-prompts.md`
@@ -176,12 +182,15 @@ Material conflicts must be surfaced rather than silently resolved by guesswork.
 
 ## Current AI Development Layer
 
-Phase 4 is the Core Agent Layer:
+The active AI execution layer is:
 
 - `AGENTS.md` — root execution contract
 - `CURSOR_CONTEXT.md` — compact project context
-
-Phase 5 will add `.cursor/rules/` execution rules.
+- `.cursor/rules/` — executable Cursor rules
+- `docs/15-agents.md` — detailed agent protocol reference
+- `docs/16-development-protocol.md` — task execution lifecycle
+- `docs/17-github-linear-workflow.md` — delivery traceability
+- `docs/18-ai-safety-quality.md` — safety and quality gates
 
 ## Quick Decision Guide
 
@@ -195,7 +204,7 @@ If unsure where a rule belongs:
 - Engineering rule → `docs/06-coding-rules.md`
 - Technology decision → `docs/07-tech-stack.md`
 - Component rule → `docs/08-components.md`
-- AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md`
+- AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md` / `docs/16-development-protocol.md` / `docs/18-ai-safety-quality.md`
 - Prompt protocol → `docs/14-prompts.md`
 - Persistent decision/memory → `docs/13-memory.md`
 
