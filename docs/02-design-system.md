@@ -90,6 +90,71 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Component Inventory & State System
 
+## Motion & Interaction System
+
+### Motion Principles
+
+Baroj motion should reinforce:
+
+- Calmness.
+- Clarity.
+- Spatial continuity.
+- Interaction feedback.
+
+Motion must never become decorative noise or delay a user's task.
+
+### Motion Rules
+
+- Prefer short, purposeful transitions.
+- Preserve immediate feedback for user actions.
+- Avoid unnecessary animation on static content.
+- Avoid excessive simultaneous motion.
+- Do not use motion to hide loading or system latency.
+- Respect `prefers-reduced-motion`.
+- When reduced motion is enabled, remove or minimize non-essential movement while preserving state and meaning.
+
+### Interaction Feedback
+
+Applicable interactive components should communicate:
+
+- Hover.
+- Focus-visible.
+- Pressed.
+- Selected.
+- Disabled.
+- Loading.
+- Success.
+- Error.
+
+Feedback should use the existing Design System tokens and component states rather than one-off visual treatments.
+
+### Transition Guidance
+
+The existing Design System guidance identifies 300ms as a previous/default motion guideline, but it is not a hard requirement.
+
+Until a formal motion token scale is approved:
+
+- Do not introduce a global duration scale.
+- Do not introduce arbitrary animation timing values across components.
+- Prefer the smallest duration that preserves perceptible feedback.
+- Keep motion implementation local to the component or interaction that needs it.
+
+### Loading & Async Motion
+
+- Loading indicators must communicate active work without excessive movement.
+- Prefer stable layout during loading to reduce cumulative layout shift.
+- Skeleton/loading motion must be subtle.
+- Async completion should transition clearly into the resulting state.
+- Errors must not depend on animation to become noticeable.
+
+### Open Decisions
+
+- Formal motion duration tokens.
+- Easing tokens.
+- Standard transition presets.
+- Skeleton/loading animation specification.
+- Page-transition policy.
+
 ## Responsive, RTL & Accessibility System
 
 ### Responsive Rules
