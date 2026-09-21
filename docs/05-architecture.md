@@ -322,6 +322,226 @@ Before changing architecture, an agent must:
 
 Do not invent unresolved infrastructure decisions.
 
+## AI Gateway & Trust Boundary
+
+### Purpose
+
+Define Baroj's application-level AI boundary so AI providers remain replaceable, untrusted, and isolated from domain policy.
+
+### AI Position in the Architecture
+
+AI is an application-level capability with infrastructure adapters.
+
+```text
+Presentation / Application Use Case
+            |
+            v
+       AI Gateway
+            |
+            v
+    Provider Adapter
+            |
+            v
+       AI Provider
+            |
+            v
+   Structured Output
+            |
+            v
+     Output Validation
+            |
+            v
+ Application / Domain
+```
+
+### AI Gateway Responsibilities
+
+The AI Gateway owns:
+
+- A stable application-facing AI contract.
+- Request orchestration.
+- Provider selection through approved configuration.
+- Provider-independent request/response shapes.
+- Timeout and failure handling at the application boundary.
+- Output validation before trusted use.
+- AI-specific observability hooks when observability is introduced.
+
+The gateway must not own:
+
+- Domain business rules.
+- Canonical property/listing ownership.
+- UI rendering.
+- Provider-specific business policy.
+
+### Provider Adapter Responsibilities
+
+Provider adapters own:
+
+- Provider SDK/API interaction.
+- Provider-specific authentication/configuration.
+- Provider-specific request mapping.
+- Provider-specific response mapping.
+- Provider-specific error translation.
+
+Provider SDKs must not leak into Presentation or Domain code.
+
+### Trust Boundary
+
+AI output is untrusted external data.
+
+Required flow:
+
+```text
+User / System Input
+        |
+        v
+Input Boundary Validation
+        |
+        v
+Application / AI Gateway
+        |
+        v
+Provider Adapter
+        |
+        v
+AI Provider
+        |
+        v
+Raw Model Output
+        |
+        v
+Schema / Output Validation
+        |
+        v
+Application Rules
+        |
+        v
+Trusted Domain State
+```
+
+Raw model output must never be persisted or used as trusted business state without validation and the required domain/application checks.
+
+### Input Safety
+
+Before sending data to an AI provider:
+
+- Validate the request shape.
+- Apply authorization rules.
+- Minimize data to what the use case requires.
+- Do not send secrets or unnecessary sensitive data.
+- Keep provider credentials server-side.
+- Treat user-provided instructions as untrusted input.
+
+### Output Safety
+
+AI output must be treated as untrusted until validated.
+
+Where structured output is required:
+
+- Validate schema.
+- Validate allowed values and ranges.
+- Validate business invariants in the appropriate domain/application layer.
+- Reject or safely handle malformed output.
+- Do not allow model output to bypass authorization or persistence rules.
+
+### Prompt Boundary
+
+Prompts are application inputs/contracts, not domain truth.
+
+AI prompts must:
+
+- Be explicit about expected output shape when structured output is required.
+- Avoid embedding secrets.
+- Avoid relying on undocumented provider behavior.
+- Remain replaceable independently of provider SDK details.
+
+Prompt templates belong in the project's approved prompt/documentation layer unless a runtime-specific implementation requires otherwise.
+
+### Property Search + AI
+
+AI may support Property Search only through the approved application boundary.
+
+Examples of future use cases may include:
+
+- Query understanding.
+- Search-intent normalization.
+- Natural-language property criteria extraction.
+
+These are capabilities, not approved product features until explicitly specified.
+
+AI must not independently decide:
+
+- Property ownership.
+- Authorization.
+- Payment outcomes.
+- Canonical property state.
+- Security policy.
+
+### Failure & Fallback
+
+AI failures must have explicit application-level handling.
+
+At minimum, account for:
+
+- Provider timeout.
+- Provider unavailable.
+- Rate limiting.
+- Invalid provider response.
+- Invalid structured output.
+- Partial/uncertain result where the use case permits it.
+
+Do not silently substitute fabricated data when AI fails.
+
+### Privacy & Data Handling
+
+Until a provider and data policy are explicitly selected:
+
+- Assume AI inputs may contain sensitive information.
+- Send the minimum required data.
+- Do not persist raw prompts/responses by default.
+- Do not log sensitive AI payloads by default.
+- Provider-specific retention and data-processing requirements must be documented before production use.
+
+### AI Observability
+
+Observability requirements remain open.
+
+When implemented, useful signals may include:
+
+- Request success/failure.
+- Latency.
+- Provider/model identifier.
+- Validation failure categories.
+- Rate-limit events.
+
+Do not log raw sensitive prompts or model outputs by default.
+
+### AI Definition of Done
+
+An AI integration is complete when:
+
+- The AI Gateway contract is explicit.
+- Provider-specific logic is isolated in an adapter.
+- Input validation and authorization are applied.
+- Structured output is validated before trusted use.
+- Failure/fallback behavior is defined.
+- Secrets remain server-side.
+- Sensitive payload logging is avoided.
+- No domain rule depends directly on a provider SDK.
+- Relevant tests/checks pass.
+
+### Open Decisions
+
+- AI provider(s).
+- AI SDK/runtime.
+- AI gateway implementation details.
+- Prompt orchestration strategy.
+- Structured-output technology.
+- Model selection policy.
+- Provider retention/data-processing policy.
+- AI observability implementation.
+- AI cost/rate-limit policy.
+
 ## Persistence & Data Ownership Model
 
 ### Purpose
