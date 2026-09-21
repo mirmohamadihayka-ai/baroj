@@ -88,6 +88,45 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Typography Token System
 
+## Radius, Border & Shadow System
+
+### Radius Tokens
+
+The current approved component radius values are:
+
+| Token | Value | Usage |
+|---|---:|---|
+| `radius-button` | 16px | Buttons and primary interactive controls |
+| `radius-input` | 16px | Inputs and form controls |
+| `radius-card` | 24px | Cards and major content surfaces |
+| `radius-full` | 999px | Pills, badges, and fully rounded controls |
+
+Do not introduce arbitrary radius values when an approved token applies.
+
+### Border Rules
+
+- Borders should be subtle and support hierarchy rather than dominate the interface.
+- Use approved color tokens for borders.
+- Do not invent standalone border colors.
+- Focus, error, selected, and disabled borders must use their semantic state rather than ad-hoc colors.
+- Border width and detailed component-specific border contracts remain open where the current sources do not define them.
+
+### Shadow / Elevation
+
+Baroj uses restrained depth and avoids heavy or decorative shadows.
+
+The exact shadow scale is not currently defined by the approved sources. Therefore:
+
+- Do not invent `shadow-sm`, `shadow-md`, or `shadow-lg` values yet.
+- Prefer no shadow when elevation is not necessary.
+- Any new shadow value requires an explicit Design System decision.
+
+### Open Decisions
+
+- Exact border widths.
+- Exact shadow/elevation tokens.
+- Component-specific elevation usage.
+
 ## Spacing & Layout Token System
 
 ### Spacing Scale
