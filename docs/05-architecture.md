@@ -542,6 +542,126 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Messaging & Communication Boundary
+
+### Purpose
+
+Define the future boundary for user-to-user and system communication without inventing message schemas, transport providers, delivery guarantees, or persistence details.
+
+### Ownership
+
+Messaging / Communication is the intended owner of:
+
+- Conversation and message domain behavior.
+- Communication lifecycle rules.
+- Message delivery contracts.
+- Communication-specific application workflows.
+- Communication-related security and access-control requirements.
+
+Other modules may request communication through approved application contracts but must not own canonical message or conversation state.
+
+### Boundary
+
+```text
+Feature / Application Use Case
+          |
+          v
+Communication Application Contract
+          |
+          v
+Messaging / Communication Domain
+          |
+          v
+Delivery / Persistence Contracts
+          |
+          v
+Infrastructure
+```
+
+Communication must remain separated from:
+
+- Feature-specific UI state.
+- Property Search state.
+- AI provider implementations.
+- Transport-specific infrastructure.
+- Direct database/ORM access from presentation or feature code.
+
+### Message vs Conversation
+
+The exact domain relationship between messages, conversations, participants, and communication channels is intentionally unresolved.
+
+Do not invent:
+
+- Message fields.
+- Conversation fields.
+- Participant models.
+- Message status values.
+- Delivery guarantees.
+- Read/seen semantics.
+- Attachment models.
+- Retention rules.
+- Database tables.
+
+These require explicit domain and data decisions.
+
+### Communication Channels
+
+The platform may eventually support one or more communication channels.
+
+The architecture must treat channel delivery as an infrastructure concern behind stable application contracts.
+
+Do not assume or introduce a specific provider, protocol, queue, notification service, email/SMS provider, or real-time transport before the decision is made.
+
+### Property / Listings Integration
+
+Property and Listings may expose approved communication use cases, but must not own the messaging subsystem.
+
+Examples of future interaction boundaries may include contacting a listing party or coordinating a property-related conversation, but the exact workflows remain open.
+
+### AI Boundary
+
+AI may assist with communication-related capabilities such as drafting or summarization only through approved application boundaries.
+
+AI output must not:
+
+- Send a message without an authorized application action.
+- Grant communication access.
+- Bypass participant or authorization rules.
+- Become the canonical message history.
+
+### Security
+
+Communication operations must respect the Authentication & Authorization boundary.
+
+Protected operations require an established security context and explicit authorization.
+
+Sensitive communication data must remain inside approved application and infrastructure boundaries.
+
+### Definition of Done
+
+The Messaging & Communication boundary is ready for implementation only when:
+
+- Communication ownership is explicit.
+- Conversation/message domain rules are documented.
+- Application contracts are defined.
+- Delivery and persistence boundaries are explicit.
+- Authorization requirements are documented.
+- Failure and delivery semantics are documented.
+- AI interaction rules are documented where applicable.
+
+### Open Decisions
+
+- Conversation and message domain model.
+- Participant and access model.
+- Communication channels.
+- Delivery guarantees.
+- Real-time requirements.
+- Notification strategy.
+- Attachment handling.
+- Retention and deletion rules.
+- Persistence mapping.
+- External communication providers.
+
 ## Authentication & Authorization Boundary
 
 ### Purpose
