@@ -90,6 +90,78 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Component Inventory & State System
 
+## Responsive, RTL & Accessibility System
+
+### Responsive Rules
+
+Baroj uses the approved responsive grid:
+
+- Mobile: 4 columns
+- Tablet: 8 columns
+- Desktop: 12 columns
+
+Responsive implementation must preserve:
+
+- Content hierarchy.
+- Readability.
+- Primary interaction visibility.
+- Touch-friendly controls.
+- Stable spacing relationships.
+- No horizontal scrolling.
+
+Exact breakpoint values, container widths, page padding, and grid gutters remain open decisions until explicitly defined.
+
+### RTL Rules
+
+Baroj is a Persian-first product and must support RTL interfaces.
+
+- RTL is the default direction for Persian product UI.
+- Layout direction must use the document/application direction rather than manual visual mirroring.
+- Text alignment follows language direction unless a component has a documented semantic exception.
+- Icons with directional meaning must adapt to RTL where their meaning requires it.
+- Icons without directional meaning must not be mirrored unnecessarily.
+- Numeric values, dates, codes, URLs, and technical identifiers may require controlled LTR rendering inside RTL layouts.
+- Bidirectional content must remain readable and unambiguous.
+- Do not implement RTL through arbitrary per-component overrides when a shared direction rule can solve it.
+
+### Accessibility Rules
+
+Baroj targets WCAG 2.2 AA.
+
+Required baseline:
+
+- Full keyboard operability for interactive controls.
+- Clearly visible focus-visible states.
+- Semantic HTML where applicable.
+- Accessible names for controls and meaningful icons.
+- Form fields must expose labels, descriptions, and errors programmatically.
+- Error and success states must not rely on color alone.
+- Sufficient text and control contrast.
+- Touch targets must remain usable on small screens.
+- Loading and dynamic updates must be announced appropriately when users need the information.
+- Reduced-motion preferences must be respected.
+- Focus management must be intentional for dialogs, validation errors, and major state transitions.
+
+### Responsive + Accessibility Interaction
+
+Responsive behavior must not reduce accessibility.
+
+- Do not hide essential actions only because the viewport is smaller.
+- Mobile layouts must retain equivalent semantic functionality.
+- Focus order must follow the logical reading and interaction order.
+- Responsive reordering must not create a confusing keyboard or screen-reader sequence.
+- Any mobile-only interaction must remain accessible to keyboard and assistive-technology users where applicable.
+
+### Open Decisions
+
+- Exact responsive breakpoints.
+- Container max-width.
+- Horizontal page padding per breakpoint.
+- Grid gutter per breakpoint.
+- Full RTL component matrix for directional icons and bidirectional content.
+- Detailed accessibility testing tooling and automated test runner.
+
+
 ### Component Layers
 
 Baroj components follow three layers:
