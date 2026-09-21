@@ -88,6 +88,108 @@ This section records the approved current direction. Detailed token scales, layo
 
 ## Typography Token System
 
+## Component Inventory & State System
+
+### Component Layers
+
+Baroj components follow three layers:
+
+1. **Foundation** — reusable UI primitives.
+2. **Pattern** — reusable compositions of primitives.
+3. **Domain** — components that represent Baroj business concepts or workflows.
+
+### Foundation Inventory
+
+The initial foundation inventory includes:
+
+- Button
+- Input
+- Select
+- Badge
+- Icon
+- Card
+
+Additional primitives require a demonstrated reuse need and an explicit component-system decision.
+
+### Navigation & Layout Patterns
+
+The initial pattern inventory includes:
+
+- Header
+- Mobile Navigation
+- Breadcrumb
+- Search Bar
+- Search Filters
+- Active Filters
+
+### Property Patterns
+
+The initial property-oriented inventory includes:
+
+- Property Card
+- Property Gallery
+- Property Metadata
+- Property Filters
+
+### AI Patterns
+
+The initial AI-oriented inventory includes:
+
+- AI Assistant
+- AI Insight
+- Recommendation Card
+
+These are patterns only; AI provider logic must not be implemented inside UI components.
+
+### Required Component States
+
+Interactive components must account for applicable states:
+
+- Default
+- Hover
+- Focus-visible
+- Pressed
+- Disabled
+- Loading
+- Selected
+- Error
+- Success
+
+Not every component needs every state. A state is required when the component's behavior or semantics make it applicable.
+
+### State Rules
+
+- Focus-visible must remain clearly distinguishable.
+- Disabled controls must not appear interactive.
+- Loading states must communicate progress without unnecessary layout shift.
+- Error and success states must use semantic color tokens and accessible text/labels.
+- Selected states must be distinguishable without relying on color alone.
+- Components must support keyboard interaction where interaction is applicable.
+- Reduced-motion preferences must be respected.
+
+### Component Contract Rules
+
+Each reusable component should define:
+
+- Purpose.
+- Public props/API.
+- Supported variants.
+- Supported sizes.
+- Supported states.
+- Accessibility behavior.
+- Responsive behavior when relevant.
+- Visual token usage.
+
+Components must consume Design System tokens instead of arbitrary values.
+
+### Ownership Rules
+
+- Foundation components belong to the shared UI layer.
+- Pattern components belong to the relevant shared pattern area when reused.
+- Domain components belong to their owning feature/module.
+- A domain component must not be promoted to shared UI merely because it is visually reusable.
+- Components must not contain business rules that belong to Application or Domain layers.
+
 ## Radius, Border & Shadow System
 
 ### Radius Tokens
