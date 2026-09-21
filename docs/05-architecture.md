@@ -322,6 +322,177 @@ Before changing architecture, an agent must:
 
 Do not invent unresolved infrastructure decisions.
 
+## Backend Application & API Boundary
+
+### Purpose
+
+Define the backend boundary for application use cases without selecting unresolved infrastructure technologies.
+
+### Request Boundary
+
+Backend requests must follow:
+
+```text
+External / Browser Request
+        |
+        v
+API / Transport Boundary
+        |
+        v
+Request Validation
+        |
+        v
+Application Use Case
+        |
+        v
+Domain Rules
+        |
+        v
+Infrastructure Contracts
+        |
+        v
+Infrastructure Implementation
+        |
+        v
+Application Result
+        |
+        v
+Response Boundary
+```
+
+### API / Transport Responsibilities
+
+The API or transport layer owns:
+
+- Transport-specific request parsing.
+- Authentication context propagation when authentication exists.
+- Request-shape validation.
+- Mapping transport errors to response contracts.
+- Calling application use cases.
+- Returning stable response contracts.
+
+It must not own:
+
+- Core business rules.
+- Database/ORM access.
+- Provider-specific AI logic.
+- Domain-specific persistence policy.
+
+### Application Use-Case Responsibilities
+
+Application use cases own:
+
+- Orchestration of a user/system action.
+- Authorization checks at the application boundary.
+- Coordination between domain policies and infrastructure contracts.
+- Transaction/use-case boundaries when persistence is introduced.
+- Stable input/output contracts for callers.
+
+Application code should remain independent of a specific HTTP framework or transport mechanism where practical.
+
+### Validation Boundary
+
+Validation is layered:
+
+1. **Transport validation** protects the API boundary from malformed input.
+2. **Application validation** enforces use-case requirements.
+3. **Domain validation** enforces business invariants.
+4. **Infrastructure validation** protects technical/external integration assumptions.
+
+Client-side validation remains UX feedback and is never the authoritative security boundary.
+
+### Error Contract
+
+Backend errors must be explicit and safe.
+
+- Do not expose stack traces, secrets, provider credentials, SQL/ORM internals, or sensitive infrastructure details.
+- Use stable error categories/codes when an API contract requires machine-readable handling.
+- Human-readable messages must be safe for the client context.
+- Validation errors should identify relevant fields or request-level problems without leaking sensitive data.
+- Authorization failures must not reveal protected resource details unnecessarily.
+
+The exact error schema remains an open decision until the API implementation strategy is selected.
+
+### Property Search Application Boundary
+
+The current Property Search UI must not become the backend.
+
+Its production flow is:
+
+```text
+Property Search UI
+      |
+      v
+Search Request Contract
+      |
+      v
+Property Search Application Use Case
+      |
+      v
+Property Search Domain Rules
+      |
+      v
+Property/Listing Read Contract
+      |
+      v
+Future Persistence / External Data Adapter
+```
+
+The UI may continue using its current local interaction state until the production application contract is implemented.
+
+The following remain intentionally unresolved:
+
+- API transport/framework.
+- Search endpoint or server-action contract.
+- Property/listing read model.
+- Persistence implementation.
+- External property-data source.
+- Authentication/authorization requirements.
+
+### API Contract Rules
+
+- Public API contracts must be explicit.
+- Do not expose internal domain entities directly when a stable application response contract is appropriate.
+- Do not let ORM/database types become API contracts.
+- Do not couple API consumers to provider-specific response formats.
+- Versioning strategy should be introduced only when a real compatibility requirement exists.
+- Do not invent endpoints merely to satisfy a hypothetical future architecture.
+
+### AI Boundary
+
+AI requests must enter through the approved application-level AI gateway.
+
+```text
+API / Application Use Case
+        |
+        v
+AI Gateway Contract
+        |
+        v
+Provider Adapter
+        |
+        v
+AI Provider
+        |
+        v
+Validated Structured Output
+```
+
+Raw model output must never become trusted domain state without validation.
+
+### Backend Definition of Done
+
+A backend/API change is complete when:
+
+- The transport boundary is explicit.
+- Request validation exists at the appropriate boundary.
+- Application orchestration is separated from transport concerns.
+- Domain rules remain outside transport code.
+- Infrastructure access follows approved contracts.
+- Errors are safe and explicit.
+- No unresolved infrastructure decision is silently introduced.
+- Relevant typecheck/build/tests or equivalent validation pass.
+
 ## Current Unresolved Decisions
 
 The following remain intentionally unresolved until explicitly selected and documented:
