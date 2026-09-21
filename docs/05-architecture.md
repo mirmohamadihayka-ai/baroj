@@ -542,6 +542,118 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Authentication & Authorization Boundary
+
+### Purpose
+
+Define the future security boundary for identity, authentication, authorization, and access-control decisions without inventing an authentication provider, user schema, roles, permissions, or implementation details.
+
+### Ownership
+
+Authentication / User is the intended canonical owner of:
+
+- Identity and authentication state.
+- Authentication flows and session/security context.
+- Authorization policy contracts.
+- Access-control decisions owned by the user/security domain.
+
+Other modules may consume approved identity and authorization contracts but must not become the canonical owner of authentication state.
+
+### Boundary
+
+```text
+External Request
+      |
+      v
+Transport / API Boundary
+      |
+      v
+Authentication Context
+      |
+      v
+Application Use Case
+      |
+      v
+Authorization Policy
+      |
+      v
+Domain Operation
+      |
+      v
+Infrastructure
+```
+
+Authentication and authorization concerns must not be embedded directly into unrelated UI components, search form state, database adapters, or AI provider integrations.
+
+### Authentication vs Authorization
+
+Authentication answers whether a request is associated with an authenticated identity or approved system context.
+
+Authorization determines whether that context is permitted to perform a specific application or domain operation.
+
+These concerns must remain distinguishable even when implemented together.
+
+### Application Boundary
+
+Application use cases are responsible for enforcing required authorization before protected domain operations.
+
+Transport layers may establish or propagate authentication context, but they must not become the source of business authorization rules.
+
+Domain operations may enforce domain invariants and security-sensitive business rules where required.
+
+### Data Ownership
+
+Do not invent:
+
+- User fields.
+- Role names.
+- Permission names.
+- Session fields.
+- Token formats.
+- Authentication providers.
+- Authorization tables.
+- API endpoints.
+
+The canonical identity/security data model requires an explicit domain decision.
+
+### AI and Security
+
+AI must not determine authentication or authorization outcomes.
+
+AI-generated content cannot grant access, change permissions, or establish trusted identity state.
+
+Any AI capability operating on protected data must execute inside an already-established application authorization boundary.
+
+### Property Search
+
+Property Search may consume authenticated context or approved authorization contracts when future use cases require them.
+
+It must not implement its own identity store, session model, role system, or authorization policy.
+
+### Definition of Done
+
+The Authentication & Authorization boundary is ready for implementation only when:
+
+- Identity ownership is explicit.
+- Authentication flow and security context are documented.
+- Authorization policy contracts are explicit.
+- Protected application/domain operations are identified.
+- Data ownership and persistence mapping are approved.
+- Security failure behavior is documented.
+- AI access to protected data is bounded by application authorization.
+
+### Open Decisions
+
+- Authentication strategy.
+- Identity model.
+- Session/token strategy.
+- Authorization model.
+- Role/permission model.
+- Account lifecycle.
+- Persistence mapping.
+- External identity providers.
+- Security event/audit requirements.
+
 ## Property / Listings Domain Boundary
 
 ### Purpose
