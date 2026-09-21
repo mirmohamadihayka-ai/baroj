@@ -55,8 +55,10 @@ A lower-priority source must not silently override a higher-priority source.
 | `02-design-system.md` | Visual and component design standards |
 | `03-user-psychology.md` | User behavior and trust principles |
 | `04-ux-rules.md` | Interaction and UX rules |
+| `05-architecture.md` | System architecture, layers, boundaries, and durable architecture decisions |
 | `05-folder-structure.md` | Repository organization |
 | `06-coding-rules.md` | Engineering rules |
+| `06-frontend.md` | Frontend implementation guidance |
 | `07-tech-stack.md` | Technology decisions |
 | `08-components.md` | Component architecture |
 | `09-ai-rules.md` | AI agent behavior |
