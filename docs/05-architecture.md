@@ -322,6 +322,162 @@ Before changing architecture, an agent must:
 
 Do not invent unresolved infrastructure decisions.
 
+## Persistence & Data Ownership Model
+
+### Purpose
+
+Define how Baroj owns and accesses persisted data without prematurely selecting an ORM, database access library, or external data provider.
+
+### Ownership Principles
+
+- Each persisted business concept must have one clear canonical owner.
+- A feature may consume data without becoming the owner of the canonical data.
+- Property Search owns search criteria and search workflow behavior, not canonical property/listing persistence.
+- Persistence implementations belong to Infrastructure.
+- Domain rules must remain independent of ORM and database APIs.
+- Application use cases coordinate persistence access through explicit contracts where appropriate.
+- Database records must not automatically become domain entities or API contracts.
+
+### Current Ownership Map
+
+| Data / Concept | Owner | Current Status |
+|---|---|---|
+| Property Search criteria | Property Search | Established |
+| Property Search form/interaction state | Property Search / Presentation | Established |
+| Canonical property/listing data | Property / Listings domain | Not yet separated |
+| User identity/authentication data | Authentication/User domain | Not yet established |
+| AI provider configuration | AI capability / Infrastructure | Not yet implemented |
+| Search result read model | Property Search application boundary | Contract not yet defined |
+
+Do not create new business ownership boundaries solely to fill this table.
+
+### Persistence Boundary
+
+The intended flow is:
+
+```text
+Application Use Case
+       |
+       v
+Repository / Data Contract
+       |
+       v
+Infrastructure Implementation
+       |
+       v
+Database / External Data Source
+```
+
+Rules:
+
+- Presentation must never access persistence directly.
+- Domain must not import ORM/database APIs.
+- Application code should depend on contracts rather than concrete persistence implementations where a boundary is needed.
+- Infrastructure owns connection details, queries, mapping, retries, and technical persistence concerns.
+- Persistence errors must be translated before crossing into presentation-facing contracts.
+
+### Canonical Data vs Read Models
+
+Canonical data represents the authoritative business-owned representation.
+
+Read models represent data shaped for a specific application/use-case need.
+
+A read model:
+
+- May combine multiple sources.
+- May be optimized for a specific query.
+- Must not silently become the canonical owner of the underlying business concept.
+- Should have explicit ownership and refresh/consistency expectations when introduced.
+
+For Property Search, the search result read model remains undefined until the property/listing ownership and search application contract are established.
+
+### Property / Listings Boundary
+
+The architecture currently does not establish Property / Listings as a fully separated module.
+
+Therefore:
+
+- Do not invent a property schema.
+- Do not invent listing lifecycle rules.
+- Do not introduce property persistence merely to make the current UI appear production-ready.
+- Do not treat mock/demo property data as canonical system state.
+
+When this boundary is explicitly designed, it must define:
+
+- Canonical property/listing entities.
+- Ownership and lifecycle.
+- Required invariants.
+- Read/write contracts.
+- Search-facing read model.
+- Persistence mapping.
+- Data migration strategy when applicable.
+
+### External Property Data
+
+External property-data providers are integrations, not canonical ownership by default.
+
+Any external property source must have:
+
+- Explicit integration boundary.
+- Defined data ownership.
+- Mapping/normalization rules.
+- Failure behavior.
+- Freshness/consistency expectations.
+- Security and privacy handling where applicable.
+
+The specific provider remains unresolved.
+
+### Transactions & Consistency
+
+Until a persistence implementation is selected:
+
+- Do not invent transaction infrastructure.
+- Application use cases should define logical consistency boundaries.
+- When multiple writes become necessary, transaction requirements must be documented before implementation.
+- Do not assume eventual consistency unless the architecture explicitly requires it.
+
+### Migrations & Schema Changes
+
+Once a database schema exists:
+
+- Schema changes must be versioned.
+- Migrations must be reviewable and reversible where practical.
+- Destructive changes require explicit review.
+- Production data must never be treated as disposable test state.
+- Seed/demo data must be clearly separated from canonical production data.
+
+The migration tool remains an open infrastructure decision.
+
+### Caching
+
+Caching is not currently established as part of the persistence model.
+
+Therefore:
+
+- Do not add a cache without a measured requirement.
+- Do not use cache state as canonical state.
+- Any future cache must define invalidation/expiry and consistency behavior.
+
+### Persistence Security
+
+- Credentials and connection strings remain server-side.
+- Never expose database credentials to the browser.
+- Validate and authorize application requests before sensitive persistence operations.
+- Avoid logging raw sensitive records or credentials.
+- Database/provider errors must not leak internal infrastructure details to users.
+
+### Open Decisions
+
+- Database engine/configuration.
+- ORM/data-access implementation.
+- Property / Listings module boundary.
+- Canonical property/listing schema.
+- Search result read model.
+- External property-data provider.
+- Transaction strategy.
+- Migration tooling.
+- Caching strategy.
+
 ## Backend Application & API Boundary
 
 ### Purpose
