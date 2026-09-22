@@ -83,6 +83,7 @@ Use the smallest relevant set:
 - `docs/07-tech-stack.md`
 - `docs/08-components.md`
 - `docs/19-backend-data-implementation-plan.md`
+- `docs/20-property-listings-search-read-model.md`
 
 ### AI / Agent Work
 
