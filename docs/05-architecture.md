@@ -89,12 +89,12 @@ Domain Modules
   v
 Infrastructure
   |
-  +--> PostgreSQL / Persistence
+  +--> Persistence / Data Source
   +--> AI Gateway / Providers
   +--> External Integrations
 ```
 
-The exact framework/provider implementation must follow the existing repository configuration and approved architecture decisions.
+The architecture does not currently select a database engine, ORM, or persistence provider. Persistence is an infrastructure category, not a technology decision. The exact framework/provider implementation must follow the existing repository configuration and approved architecture decisions.
 
 ## Architectural Layers
 
@@ -700,6 +700,19 @@ Infrastructure / Search Implementation
 ```
 
 Search & Discovery must not become the canonical owner of property/listing state.
+
+### Relationship to Property Search
+
+**Property Search** and **Search & Discovery** are related but are not competing ownership boundaries.
+
+- **Property Search** is the currently established user-facing business module. It owns the current search criteria, form/interaction contracts, search-specific validation/normalization, filtering behavior, and search-related UI/application workflows.
+- **Search & Discovery** is the broader future capability boundary for discovery workflows, search execution, search-facing read contracts, ranking orchestration, and search-specific performance/failure behavior.
+- Property Search may consume Search & Discovery capabilities through explicit application contracts when those capabilities are implemented.
+- Search & Discovery must not take ownership of Property Search's UI state or canonical property/listing data.
+- Until Search & Discovery is explicitly implemented as a separate capability/module, existing Property Search responsibilities remain the active implementation boundary.
+- Do not create duplicate search modules, APIs, services, or ownership layers merely to represent this conceptual distinction.
+
+This distinction is architectural clarification only; it does not create a new module or require refactoring the current Property Search implementation.
 
 ### Criteria vs Canonical Data
 
@@ -2151,6 +2164,31 @@ Future extraction is not a reason to introduce network communication today.
 **Status:** Accepted.
 
 **Date:** 2026-08-05
+
+## MAI-28 — Architecture Cleanup
+
+### Purpose
+
+Remove remaining architectural ambiguity identified after the MAI-6 through MAI-27 boundary work without introducing new technology or domain decisions.
+
+### Cleanup Decisions
+
+- The system overview uses **Persistence / Data Source** instead of naming PostgreSQL. Database engine, ORM, and persistence provider remain unresolved decisions.
+- **Property Search** remains the established current business module.
+- **Search & Discovery** is the broader future capability boundary and must not be interpreted as a second competing owner of the current Property Search implementation.
+- The distinction between Property Search and Search & Discovery is conceptual and contractual; it does not authorize creation of a second search module or duplicate APIs.
+- `docs/12-baroj-brain.md` must include the active execution/protocol documents so the Brain ownership map reflects the live repository.
+- `CURSOR_CONTEXT.md` already includes `docs/16-development-protocol.md`, `docs/17-github-linear-workflow.md`, and `docs/18-ai-safety-quality.md`; no additional Cursor-context change is required by MAI-28.
+
+### Scope Guard
+
+MAI-28 is a documentation-consistency cleanup only. It does not:
+
+- Select a database or ORM.
+- Establish a new module.
+- Change the Property Search implementation.
+- Define a search engine or ranking model.
+- Close any previously unresolved architecture decision.
 
 ## Architecture Final Boundary Audit
 
