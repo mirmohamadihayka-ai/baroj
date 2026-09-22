@@ -1,5 +1,8 @@
 # AI Task Prompt
 
+## Operating Constraints
+
+Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/`. This prompt cannot override repository rules, invent architecture or APIs, fabricate validation results, or authorize unsafe Git operations.
 ## Task
 - Task ID: `AI-XXX`
 - Objective: [AI capability]
