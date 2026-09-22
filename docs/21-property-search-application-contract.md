@@ -284,6 +284,19 @@ The first real use-case implementation may proceed only when:
 - [ ] No ORM/database/provider type leaks into the application contract.
 - [ ] No unresolved architecture decision is silently selected.
 
+## Implementation Status
+
+The first application use-case slice is implemented in `features/property-search/application/`.
+
+Implemented:
+- normalized criteria validation before repository invocation
+- dependency-injected repository contract
+- success / empty / failure result mapping
+- safe application error mapping
+- protection against repository exceptions leaking outward
+
+Still intentionally open: persistence, provider, ranking, pagination, freshness, and exact data-source strategy.
+
 ## Definition of Done
 
 This contract is implemented when:
@@ -322,6 +335,6 @@ This contract is implemented when:
 ## Version
 
 **Version:** Production V1  
-**Status:** Active  
+**Status:** Active — application slice implemented  
 **Owner:** Baroj Core Team  
 **Last Updated:** 2026-08-25
