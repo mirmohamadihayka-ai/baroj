@@ -243,3 +243,8 @@ Keep this file concise. Do not duplicate detailed Brain content here.
 **Status:** Active  
 **Owner:** Baroj Core Team  
 **Last Updated:** 2026-08-25
+
+
+## MAI-33 Persistence Decision
+
+PostgreSQL is the approved primary relational persistence engine. Keep SQL/database clients behind Infrastructure and the repository contract. ORM/query builder, hosting provider, schema, search engine, and external property source remain unresolved until explicitly approved.
