@@ -82,6 +82,7 @@ Use the smallest relevant set:
 - `docs/06-coding-rules.md`
 - `docs/07-tech-stack.md`
 - `docs/08-components.md`
+- `docs/19-backend-data-implementation-plan.md`
 
 ### AI / Agent Work
 
@@ -191,6 +192,7 @@ The active AI execution layer is:
 - `docs/16-development-protocol.md` — task execution lifecycle
 - `docs/17-github-linear-workflow.md` — delivery traceability
 - `docs/18-ai-safety-quality.md` — safety and quality gates
+- `docs/19-backend-data-implementation-plan.md` — backend/data implementation sequence and decision gates
 
 ## Quick Decision Guide
 
@@ -203,6 +205,7 @@ If unsure where a rule belongs:
 - Architecture → `docs/05-architecture.md`
 - Engineering rule → `docs/06-coding-rules.md`
 - Technology decision → `docs/07-tech-stack.md`
+- Backend/data plan → `docs/19-backend-data-implementation-plan.md`
 - Component rule → `docs/08-components.md`
 - AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md` / `docs/16-development-protocol.md` / `docs/18-ai-safety-quality.md`
 - Prompt protocol → `docs/14-prompts.md`
