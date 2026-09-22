@@ -17,6 +17,8 @@ Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/
 - Preserve server/client boundaries.
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Inspect existing UI patterns.
 2. Identify reusable components and tokens.
 3. Implement the smallest consistent solution.
