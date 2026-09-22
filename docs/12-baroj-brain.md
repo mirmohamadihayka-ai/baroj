@@ -67,6 +67,10 @@ A lower-priority source must not silently override a higher-priority source.
 | `12-baroj-brain.md` | Brain operating model |
 | `13-memory.md` | Persistent decision/context memory |
 | `14-prompts.md` | Prompt and task protocol |
+| `15-agents.md` | Detailed AI agent protocol reference |
+| `16-development-protocol.md` | Mandatory development lifecycle and validation protocol |
+| `17-github-linear-workflow.md` | GitHub/Linear delivery and traceability workflow |
+| `18-ai-safety-quality.md` | AI safety, quality, and release gates |
 
 ## Update Rules
 
@@ -123,10 +127,14 @@ Avoid generic advice that does not change implementation behavior.
 - `09-ai-rules.md`
 - `13-memory.md`
 - `14-prompts.md`
+- `15-agents.md`
+- `16-development-protocol.md`
+- `17-github-linear-workflow.md`
+- `18-ai-safety-quality.md`
 
 ## Version
 
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-08-23
