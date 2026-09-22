@@ -18,6 +18,8 @@ Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/
 - [ ] Tests and documentation are updated where required.
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Inspect repository and relevant Brain.
 2. Plan the smallest safe change.
 3. Implement using existing patterns.
