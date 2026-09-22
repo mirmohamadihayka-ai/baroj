@@ -59,7 +59,8 @@ docs/
 ├── 18-ai-safety-quality.md
 ├── 19-backend-data-implementation-plan.md
 ├── 20-property-listings-search-read-model.md
-└── 21-property-search-application-contract.md
+├── 21-property-search-application-contract.md
+└── 22-property-search-repository-contract.md
 ```
 
 ## Context Routing
@@ -204,6 +205,7 @@ The active AI execution layer is:
 - `docs/19-backend-data-implementation-plan.md` — backend/data implementation sequence and decision gates
 - `docs/20-property-listings-search-read-model.md` — search read-model ownership and minimum result concepts
 - `docs/21-property-search-application-contract.md` — application input/result contract and use-case boundary
+- `docs/22-property-search-repository-contract.md` — repository/search contract and infrastructure boundary
 
 ## Quick Decision Guide
 
@@ -219,6 +221,7 @@ If unsure where a rule belongs:
 - Backend/data plan → `docs/19-backend-data-implementation-plan.md`
 - Search read-model contract → `docs/20-property-listings-search-read-model.md`
 - Property Search application contract/use case → `docs/21-property-search-application-contract.md`
+- Property Search repository/search contract → `docs/22-property-search-repository-contract.md`
 - Component rule → `docs/08-components.md`
 - AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md` / `docs/16-development-protocol.md` / `docs/18-ai-safety-quality.md`
 - Prompt protocol → `docs/14-prompts.md`
