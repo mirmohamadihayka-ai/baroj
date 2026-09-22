@@ -75,6 +75,9 @@ A lower-priority source must not silently override a higher-priority source.
 | `20-property-listings-search-read-model.md` | Property / Listings search read-model ownership and minimum result contract |
 | `21-property-search-application-contract.md` | Property Search application input/result contract and use-case boundary |
 | `22-property-search-repository-contract.md` | Property Search repository/search contract and infrastructure boundary |
+| `23-persistence-data-source-decision.md` | PostgreSQL persistence-engine decision |
+| `24-property-search-postgresql-read-model.md` | Minimum PostgreSQL Property Search read-model contract |
+| `25-data-access-layer-decision.md` | MAI-35 Drizzle ORM, node-postgres, and migration-stack decision |
 
 ## Update Rules
 
@@ -145,7 +148,7 @@ Avoid generic advice that does not change implementation behavior.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-25
+**Last Updated:** 2026-08-26
 
 
 ## MAI-33
@@ -156,3 +159,8 @@ Avoid generic advice that does not change implementation behavior.
 ## MAI-34
 
 `docs/24-property-search-postgresql-read-model.md` defines the minimum PostgreSQL read-model schema contract for Property Search. It does not select ORM, migration tooling, hosting, search engine, ranking, or synchronization strategy.
+
+
+## MAI-35
+
+`docs/25-data-access-layer-decision.md` records the accepted Drizzle ORM + node-postgres (`pg`) + Drizzle Kit data-access decision. Hosting/provider, pooling, canonical Property/Listings schema, and search semantics remain separately scoped.
