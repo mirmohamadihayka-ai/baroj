@@ -6,9 +6,7 @@ import type {
   PropertySearchRepositoryResult,
 } from "@/features/property-search/application/property-search-repository";
 import type { PropertySearchCriteria } from "@/features/property-search/types";
-import {
-  database,
-} from "@/infrastructure/database/client";
+import { getDatabase } from "@/infrastructure/database/client";
 import {
   propertySearchReadModel,
 } from "@/infrastructure/database/schema/property-search-read-model";
@@ -72,7 +70,7 @@ export function createPostgresPropertySearchRepository(): PropertySearchReposito
 
         const filters = buildFilters(criteria);
 
-        const rows = await database
+        const rows = await getDatabase()
           .select()
           .from(propertySearchReadModel)
           .where(filters.length > 0 ? and(...filters) : undefined);
