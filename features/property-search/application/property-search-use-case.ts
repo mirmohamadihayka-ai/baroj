@@ -1,11 +1,14 @@
 import type { PropertySearchCriteria } from "@/features/property-search/types";
+import {
+  normalizePropertySearchCriteria,
+  validatePropertySearchCriteria,
+} from "@/features/property-search/lib/validate-property-search-criteria";
 import type {
   PropertySearchRepository,
   PropertySearchRepositoryFailure,
   PropertySearchRepositoryResult,
   PropertySearchItem,
 } from "@/features/property-search/application/property-search-repository";
-import { normalizePropertySearchCriteria } from "@/features/property-search/lib/validate-property-search-criteria";
 
 export type PropertySearchApplicationError =
   | { code: "invalid_criteria"; message: string }
@@ -39,13 +42,49 @@ function mapRepositoryFailure(
   };
 }
 
-function isRepositoryResult(
-  value: PropertySearchRepositoryResult,
-): value is PropertySearchRepositoryResult {
-  return (
-    value.status === "success" &&
-    Array.isArray(value.items)
-  ) || value.status === "failure";
+function invalidCriteriaResult(
+  message: string,
+): PropertySearchApplicationResult {
+  return {
+    status: "failure",
+    items: [],
+    error: {
+      code: "invalid_criteria",
+      message,
+    },
+  };
+}
+
+function unexpectedFailureResult(): PropertySearchApplicationResult {
+  return {
+    status: "failure",
+    items: [],
+    error: {
+      code: "unexpected",
+      message: "Property search could not be completed.",
+    },
+  };
+}
+
+function mapRepositoryResult(
+  result: PropertySearchRepositoryResult,
+): PropertySearchApplicationResult {
+  if (result.status === "failure") {
+    return {
+      status: "failure",
+      items: [],
+      error: mapRepositoryFailure(result.failure),
+    };
+  }
+
+  if (result.items.length === 0) {
+    return { status: "empty", items: [] };
+  }
+
+  return {
+    status: "success",
+    items: result.items,
+  };
 }
 
 export function createPropertySearchUseCase(
@@ -53,67 +92,26 @@ export function createPropertySearchUseCase(
 ): PropertySearchUseCase {
   return {
     async execute(criteria) {
+      const validation = validatePropertySearchCriteria(criteria);
+
+      if (Object.keys(validation.fieldErrors).length > 0) {
+        return invalidCriteriaResult(
+          "Enter valid search criteria before continuing.",
+        );
+      }
+
+      if (validation.formError) {
+        return invalidCriteriaResult(validation.formError);
+      }
+
       const normalized = normalizePropertySearchCriteria(criteria);
 
-      if (
-        !normalized.query &&
-        !normalized.location &&
-        !normalized.propertyType &&
-        !normalized.minPrice &&
-        !normalized.maxPrice
-      ) {
-        return {
-          status: "failure",
-          items: [],
-          error: {
-            code: "invalid_criteria",
-            message: "Enter at least one search criterion to continue.",
-          },
-        };
-      }
-
-      let result: PropertySearchRepositoryResult;
-
       try {
-        result = await repository.search({ ...normalized });
+        const result = await repository.search({ ...normalized });
+        return mapRepositoryResult(result);
       } catch {
-        return {
-          status: "failure",
-          items: [],
-          error: {
-            code: "unexpected",
-            message: "Property search could not be completed.",
-          },
-        };
+        return unexpectedFailureResult();
       }
-
-      if (!isRepositoryResult(result)) {
-        return {
-          status: "failure",
-          items: [],
-          error: {
-            code: "unexpected",
-            message: "Property search could not be completed.",
-          },
-        };
-      }
-
-      if (result.status === "failure") {
-        return {
-          status: "failure",
-          items: [],
-          error: mapRepositoryFailure(result.failure),
-        };
-      }
-
-      if (result.items.length === 0) {
-        return { status: "empty", items: [] };
-      }
-
-      return {
-        status: "success",
-        items: result.items,
-      };
     },
   };
 }
