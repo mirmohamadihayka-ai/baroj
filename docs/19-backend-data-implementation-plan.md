@@ -40,7 +40,7 @@ This plan covers the path from the current Property Search frontend foundation t
 ### Out of scope
 
 - Selecting an ORM.
-- Creating a database schema before ownership is approved.
+- Creating a database schema before ownership/read-model fields are approved.
 - Selecting an external property-data provider.
 - Implementing authentication/authorization before its contract is defined.
 - Implementing ranking/recommendation logic.
