@@ -146,3 +146,8 @@ Avoid generic advice that does not change implementation behavior.
 **Status:** Active  
 **Owner:** Baroj Core Team  
 **Last Updated:** 2026-08-25
+
+
+## MAI-33
+
+`docs/23-persistence-data-source-decision.md` records the accepted PostgreSQL persistence-engine decision. ORM, hosting/provider, schema, search engine, and external property-data source remain open.
