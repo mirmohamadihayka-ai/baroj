@@ -72,6 +72,7 @@ A lower-priority source must not silently override a higher-priority source.
 | `17-github-linear-workflow.md` | GitHub/Linear delivery and traceability workflow |
 | `18-ai-safety-quality.md` | AI safety, quality, and release gates |
 | `19-backend-data-implementation-plan.md` | Ordered backend/data implementation plan and decision gates |
+| `20-property-listings-search-read-model.md` | Property / Listings search read-model ownership and minimum result contract |
 
 ## Update Rules
 
@@ -133,6 +134,7 @@ Avoid generic advice that does not change implementation behavior.
 - `17-github-linear-workflow.md`
 - `18-ai-safety-quality.md`
 - `19-backend-data-implementation-plan.md`
+- `20-property-listings-search-read-model.md`
 
 ## Version
 
