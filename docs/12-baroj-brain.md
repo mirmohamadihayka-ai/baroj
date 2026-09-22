@@ -151,3 +151,8 @@ Avoid generic advice that does not change implementation behavior.
 ## MAI-33
 
 `docs/23-persistence-data-source-decision.md` records the accepted PostgreSQL persistence-engine decision. ORM, hosting/provider, schema, search engine, and external property-data source remain open.
+
+
+## MAI-34
+
+`docs/24-property-search-postgresql-read-model.md` defines the minimum PostgreSQL read-model schema contract for Property Search. It does not select ORM, migration tooling, hosting, search engine, ranking, or synchronization strategy.
