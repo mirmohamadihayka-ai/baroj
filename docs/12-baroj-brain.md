@@ -73,6 +73,7 @@ A lower-priority source must not silently override a higher-priority source.
 | `18-ai-safety-quality.md` | AI safety, quality, and release gates |
 | `19-backend-data-implementation-plan.md` | Ordered backend/data implementation plan and decision gates |
 | `20-property-listings-search-read-model.md` | Property / Listings search read-model ownership and minimum result contract |
+| `21-property-search-application-contract.md` | Property Search application input/result contract and use-case boundary |
 
 ## Update Rules
 
@@ -135,10 +136,11 @@ Avoid generic advice that does not change implementation behavior.
 - `18-ai-safety-quality.md`
 - `19-backend-data-implementation-plan.md`
 - `20-property-listings-search-read-model.md`
+- `21-property-search-application-contract.md`
 
 ## Version
 
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-23
+**Last Updated:** 2026-08-25
