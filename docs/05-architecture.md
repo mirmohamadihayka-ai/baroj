@@ -1776,8 +1776,8 @@ Therefore:
 
 ### Open Decisions
 
-- Database engine/configuration.
-- ORM/data-access implementation.
+- Database engine/configuration — PostgreSQL approved by MAI-33; hosting/provider remains open.
+- ORM/data-access implementation — unresolved.
 - Property / Listings module boundary.
 - Canonical property/listing schema.
 - Search result read model.
