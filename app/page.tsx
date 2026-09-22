@@ -1,4 +1,4 @@
-import { PropertySearchSectionContainer } from "@/features/property-search";
+import { PropertySearchSectionContainer } from "@/features/property-search/components/property-search-section-container";
 
 export default function HomePage() {
   return (

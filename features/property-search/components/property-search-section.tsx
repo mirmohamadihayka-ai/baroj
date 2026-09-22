@@ -65,12 +65,11 @@ export function PropertySearchSection({
     locationOptions,
     propertyTypeOptions,
   );
-  const resolvedDisabledReason =
-    disabled && disabledReason
-      ? disabledReason
-      : isLoading
-        ? "Search is in progress. Fields are temporarily unavailable."
-        : undefined;
+  const resolvedDisabledReason = disabled
+    ? disabledReason ?? "Search is currently unavailable."
+    : isLoading
+      ? "Search is in progress. Fields are temporarily unavailable."
+      : undefined;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -79,7 +78,15 @@ export function PropertySearchSection({
       return;
     }
 
-    if (!validate()) {
+    const result = validate();
+    if (!result.valid) {
+      if (result.fieldErrors.minPrice) {
+        document.getElementById(`${formId}-min-price`)?.focus();
+      } else if (result.fieldErrors.maxPrice) {
+        document.getElementById(`${formId}-max-price`)?.focus();
+      } else {
+        queryInputRef.current?.focus();
+      }
       return;
     }
 
@@ -94,6 +101,11 @@ export function PropertySearchSection({
 
   function handleAdjustFilters() {
     onAdjustFilters?.();
+    queryInputRef.current?.focus();
+  }
+
+  function handleRetry() {
+    onRetry?.();
     queryInputRef.current?.focus();
   }
 
@@ -119,7 +131,11 @@ export function PropertySearchSection({
         onSubmit={handleSubmit}
         className="space-y-5"
         aria-busy={isLoading || undefined}
-        aria-describedby={`${formId}-description`}
+        aria-describedby={
+          formError
+            ? `${formId}-description ${formId}-form-error`
+            : `${formId}-description`
+        }
         noValidate
       >
         <Input
@@ -176,10 +192,7 @@ export function PropertySearchSection({
           <p id={`${formId}-price-hint`} className="text-sm text-muted-foreground">
             Optional. Enter whole numbers only.
           </p>
-          <div
-            className="grid gap-5 sm:grid-cols-2"
-            aria-describedby={`${formId}-price-hint`}
-          >
+          <div className="grid gap-5 sm:grid-cols-2">
             <Input
               id={`${formId}-min-price`}
               name="minPrice"
@@ -192,6 +205,7 @@ export function PropertySearchSection({
               value={criteria.minPrice}
               error={fieldErrors.minPrice}
               disabled={isFormDisabled}
+              aria-describedby={`${formId}-price-hint`}
               onChange={(event) => setField("minPrice", event.target.value)}
             />
             <Input
@@ -206,6 +220,7 @@ export function PropertySearchSection({
               value={criteria.maxPrice}
               error={fieldErrors.maxPrice}
               disabled={isFormDisabled}
+              aria-describedby={`${formId}-price-hint`}
               onChange={(event) => setField("maxPrice", event.target.value)}
             />
           </div>
@@ -249,7 +264,10 @@ export function PropertySearchSection({
       </form>
 
       {status === "error" ? (
-        <PropertySearchErrorState message={errorMessage} onRetry={onRetry} />
+        <PropertySearchErrorState
+          message={errorMessage}
+          onRetry={onRetry ? handleRetry : undefined}
+        />
       ) : null}
 
       {status === "empty" ? (

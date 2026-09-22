@@ -11,7 +11,6 @@ export function PropertySearchEmptyState({
     <div
       className="mt-6 rounded border border-border bg-muted px-4 py-6 text-center"
       role="status"
-      aria-live="polite"
     >
       <h3 className="text-sm font-medium">No properties found</h3>
       <p className="mt-1 text-sm text-muted-foreground">

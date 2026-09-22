@@ -19,10 +19,7 @@ export function PropertySearchActiveFilters({
   }
 
   return (
-    <div
-      className="rounded border border-border bg-muted px-4 py-3"
-      aria-live="polite"
-    >
+    <div className="rounded border border-border bg-muted px-4 py-3">
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-medium">Active filters</p>
         <Button

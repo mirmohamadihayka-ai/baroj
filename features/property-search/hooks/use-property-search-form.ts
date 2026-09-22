@@ -52,11 +52,13 @@ export function usePropertySearchForm(
     setFormError(undefined);
   }, []);
 
-  const validate = useCallback((): boolean => {
+  const validate = useCallback(() => {
     const result = validatePropertySearchCriteria(criteria);
     setFieldErrors(result.fieldErrors);
     setFormError(result.formError);
-    return !result.formError && Object.keys(result.fieldErrors).length === 0;
+    const valid =
+      !result.formError && Object.keys(result.fieldErrors).length === 0;
+    return { valid, ...result };
   }, [criteria]);
 
   return {

@@ -13,7 +13,6 @@ export function PropertySearchErrorState({
     <div
       className="mt-6 rounded border border-error/30 bg-error/5 px-4 py-4"
       role="alert"
-      aria-live="assertive"
     >
       <h3 className="text-sm font-medium text-error">Search unavailable</h3>
       <p className="mt-1 text-sm text-muted-foreground">{message}</p>

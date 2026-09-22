@@ -58,32 +58,38 @@ export function getActiveFilters(
   propertyTypeOptions: PropertySearchOption[],
 ): ActiveFilter[] {
   const filters: ActiveFilter[] = [];
+  const query = criteria.query.trim();
+  const location = criteria.location.trim();
+  const propertyType = criteria.propertyType.trim();
+  const minPrice = criteria.minPrice.trim();
+  const maxPrice = criteria.maxPrice.trim();
 
-  if (criteria.query.trim()) {
+  if (query) {
     filters.push({
       key: "query",
-      label: `Search: ${criteria.query.trim()}`,
+      label: `Search: ${query}`,
     });
   }
 
-  if (criteria.location) {
+  if (location) {
     const label =
-      locationOptions.find((option) => option.value === criteria.location)
-        ?.label ?? criteria.location;
+      locationOptions.find((option) => option.value === location)?.label ??
+      location;
     filters.push({ key: "location", label: `Location: ${label}` });
   }
 
-  if (criteria.propertyType) {
+  if (propertyType) {
     const label =
-      propertyTypeOptions.find((option) => option.value === criteria.propertyType)
-        ?.label ?? criteria.propertyType;
+      propertyTypeOptions.find((option) => option.value === propertyType)
+        ?.label ?? propertyType;
     filters.push({ key: "propertyType", label: `Type: ${label}` });
   }
 
-  if (criteria.minPrice || criteria.maxPrice) {
-    const min = criteria.minPrice || "Any";
-    const max = criteria.maxPrice || "Any";
-    filters.push({ key: "priceRange", label: `Price: ${min} – ${max}` });
+  if (minPrice || maxPrice) {
+    filters.push({
+      key: "priceRange",
+      label: `Price: ${minPrice || "Any"} – ${maxPrice || "Any"}`,
+    });
   }
 
   return filters;

@@ -1,5 +1,4 @@
 export { PropertySearchSection } from "@/features/property-search/components/property-search-section";
-export { PropertySearchSectionContainer } from "@/features/property-search/components/property-search-section-container";
 export type { PropertySearchSectionProps } from "@/features/property-search/components/property-search-section";
 export { usePropertySearchForm } from "@/features/property-search/hooks/use-property-search-form";
 export {

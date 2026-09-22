@@ -32,7 +32,6 @@ export function Button({
       aria-busy={isLoading || undefined}
       {...props}
     >
-      {isLoading ? <span className="sr-only">Loading</span> : null}
       {children}
     </button>
   );

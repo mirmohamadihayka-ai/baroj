@@ -8,14 +8,24 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { id, label, hint, error, className = "", disabled, ...props },
+  {
+    id,
+    label,
+    hint,
+    error,
+    className = "",
+    disabled,
+    "aria-describedby": describedByFromProps,
+    ...props
+  },
   ref,
 ) {
   const inputId = id ?? props.name;
   const hintId = hint && inputId ? `${inputId}-hint` : undefined;
   const errorId = error && inputId ? `${inputId}-error` : undefined;
   const describedBy =
-    [hintId, errorId].filter(Boolean).join(" ") || undefined;
+    [hintId, errorId, describedByFromProps].filter(Boolean).join(" ") ||
+    undefined;
 
   if (!inputId) {
     throw new Error("Input requires an id or name for accessibility.");
