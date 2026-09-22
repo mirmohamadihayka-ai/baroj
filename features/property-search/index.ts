@@ -19,3 +19,16 @@ export type {
   PropertySearchStatus,
   RemovableFilterKey,
 } from "@/features/property-search/types";
+
+export { createPropertySearchUseCase } from "@/features/property-search/application/property-search-use-case";
+export type {
+  PropertySearchApplicationError,
+  PropertySearchApplicationResult,
+  PropertySearchUseCase,
+} from "@/features/property-search/application/property-search-use-case";
+export type {
+  PropertySearchItem,
+  PropertySearchRepository,
+  PropertySearchRepositoryFailure,
+  PropertySearchRepositoryResult,
+} from "@/features/property-search/application/property-search-repository";
