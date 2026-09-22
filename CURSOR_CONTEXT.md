@@ -248,3 +248,8 @@ Keep this file concise. Do not duplicate detailed Brain content here.
 ## MAI-33 Persistence Decision
 
 PostgreSQL is the approved primary relational persistence engine. Keep SQL/database clients behind Infrastructure and the repository contract. ORM/query builder, hosting provider, schema, search engine, and external property source remain unresolved until explicitly approved.
+
+
+## MAI-34 Property Search Read Model
+
+The minimum PostgreSQL read model is documented in `docs/24-property-search-postgresql-read-model.md`: id, property_type, location, price, and search_text. Keep it as a read projection; do not treat it as canonical Property / Listings data. ORM, migration tooling, and non-trivial query semantics remain unresolved.
