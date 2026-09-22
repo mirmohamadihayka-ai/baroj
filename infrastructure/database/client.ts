@@ -3,21 +3,46 @@ import { Pool } from "pg";
 
 import { propertySearchReadModel } from "@/infrastructure/database/schema/property-search-read-model";
 
-const databaseUrl = process.env.DATABASE_URL;
+let pool: Pool | undefined;
+let database:
+  | ReturnType<typeof drizzle>
+  | undefined;
 
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required for PostgreSQL infrastructure.");
+function getDatabaseUrl(): string {
+  const databaseUrl = process.env.DATABASE_URL;
+
+  if (!databaseUrl) {
+    throw new Error("DATABASE_URL is required for PostgreSQL infrastructure.");
+  }
+
+  return databaseUrl;
 }
 
-const pool = new Pool({
-  connectionString: databaseUrl,
-});
+function getPool(): Pool {
+  pool ??= new Pool({
+    connectionString: getDatabaseUrl(),
+  });
 
-export const database = drizzle({
-  client: pool,
-  schema: {
-    propertySearchReadModel,
-  },
-});
+  return pool;
+}
 
-export { pool as databasePool };
+export function getDatabase() {
+  database ??= drizzle({
+    client: getPool(),
+    schema: {
+      propertySearchReadModel,
+    },
+  });
+
+  return database;
+}
+
+export async function closeDatabasePool(): Promise<void> {
+  if (!pool) {
+    return;
+  }
+
+  await pool.end();
+  pool = undefined;
+  database = undefined;
+}
