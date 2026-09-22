@@ -12,6 +12,8 @@ Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/
 - Scope: [allowed files/modules]
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Inspect current behavior and dependencies.
 2. Identify reusable existing abstractions.
 3. Define invariants that must remain unchanged.
