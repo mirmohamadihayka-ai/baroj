@@ -203,3 +203,10 @@ MAI-35 does not select:
 **MAI-36 — Implement the minimal PostgreSQL Infrastructure boundary and Property Search repository using the approved contracts.**
 
 MAI-36 must not expand the read model or invent unresolved query semantics.
+
+
+## MAI-36 Implementation Status
+
+The Infrastructure boundary, Drizzle schema, centralized PostgreSQL client, Property Search repository adapter, Drizzle Kit configuration, and npm database scripts are now implemented on the MAI-36 branch.
+
+The durable migration and lockfile regeneration remain gated because the current execution environment cannot reach the npm registry or an approved PostgreSQL instance. Do not treat this stage as fully validated until those checks are completed.
