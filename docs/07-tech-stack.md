@@ -30,8 +30,8 @@ This document is a decision guide for developers and AI coding agents. Exact ver
 | Forms | React Hook Form when form complexity justifies it |
 | Server/client data | Framework-native server patterns; TanStack Query when client caching is actually required |
 | State | Local state first; Zustand only for justified shared client state |
-| Database | Unresolved — do not select a database engine from this document |
-| ORM/data layer | Use the repository's established ORM/data access layer; do not introduce a second ORM without approval |
+| Database | PostgreSQL (approved by MAI-33) |
+| ORM/data layer | Drizzle ORM + node-postgres (`pg`); migrations via Drizzle Kit (approved by MAI-35) |
 | API | Typed, documented HTTP APIs using the established application boundary |
 | Testing | Vitest, React Testing Library, Playwright when configured |
 | Package manager | Follow the repository lockfile and package-manager configuration |
@@ -39,7 +39,7 @@ This document is a decision guide for developers and AI coding agents. Exact ver
 | Observability | Sentry when configured |
 | Product analytics | PostHog when configured and privacy-approved |
 
-The previous PostgreSQL entry is intentionally not treated as an approved implementation decision. Architecture currently keeps persistence/data-source technology unresolved.
+PostgreSQL is approved by MAI-33. MAI-35 approves Drizzle ORM + node-postgres (`pg`) + Drizzle Kit as the initial data-access stack. Hosting/provider, canonical schema, search engine, and other infrastructure decisions remain separately scoped.
 
 ## AI and External Services
 
@@ -102,10 +102,13 @@ When documentation and the actual repository configuration disagree, the reposit
 - `08-components.md`
 - `09-ai-rules.md`
 - `19-backend-data-implementation-plan.md`
+- `23-persistence-data-source-decision.md`
+- `24-property-search-postgresql-read-model.md`
+- `25-data-access-layer-decision.md`
 
 ## Version
 
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-08-26
