@@ -2151,3 +2151,98 @@ Future extraction is not a reason to introduce network communication today.
 **Status:** Accepted.
 
 **Date:** 2026-08-05
+
+## Architecture Final Boundary Audit
+
+### Purpose
+
+Perform the final architecture-boundary audit before implementation work expands further. This section records the current boundary map and prevents unresolved decisions from being silently converted into implementation assumptions.
+
+### Current Boundary Map
+
+| Capability | Canonical Owner | Current State |
+|---|---|---|
+| Property Search criteria and interaction | Property Search | Established |
+| Property / Listings canonical data | Property / Listings | Boundary defined; domain model not yet implemented |
+| Authentication / Authorization | Authentication / User | Boundary defined; domain model not yet implemented |
+| Messaging / Communication | Messaging / Communication | Boundary defined; domain model not yet implemented |
+| Notifications | Notifications | Boundary defined; implementation not yet established |
+| Payments / Transactions | Payments / Transactions | Boundary defined; implementation not yet established |
+| Maps / Location | Maps / Location | Boundary defined; implementation not yet established |
+| Files / Media | Files / Media | Boundary defined; implementation not yet established |
+| Search / Discovery | Search / Discovery | Boundary defined; implementation not yet established |
+| Observability / Audit | Observability / Audit | Boundary defined; implementation not yet established |
+| AI | AI capability + Infrastructure adapters | Established at application boundary |
+
+### Boundary Audit Rules
+
+Before introducing a new implementation:
+
+- Identify the owning module/capability.
+- Confirm the dependency direction.
+- Reuse an existing contract where one exists.
+- Keep infrastructure behind approved contracts.
+- Keep canonical domain ownership explicit.
+- Do not introduce cross-module state ownership implicitly.
+- Do not turn read models, caches, telemetry, or external-provider data into canonical domain state without an explicit decision.
+
+### Unresolved Decision Rule
+
+An unresolved architecture decision must remain visible.
+
+Agents must not resolve an open decision by silently choosing:
+
+- A provider.
+- A database or ORM.
+- An authentication strategy.
+- A payment processor.
+- A messaging/notification transport.
+- A map/geocoding provider.
+- A file/media storage provider.
+- A search engine.
+- A queue/event infrastructure.
+- A schema or lifecycle that has not been approved.
+
+When implementation requires one of these decisions, stop at the relevant boundary and report the decision required.
+
+### Architecture Definition of Done
+
+The architecture phase is considered structurally complete when:
+
+- System layers and dependency direction are documented.
+- Modular Monolith strategy is explicit.
+- Core module boundaries are documented.
+- Backend/API boundaries are documented.
+- Persistence and data ownership rules are documented.
+- AI Gateway and trust boundary are documented.
+- Property / Listings boundary is documented.
+- Authentication / Authorization boundary is documented.
+- Messaging / Communication boundary is documented.
+- Notifications boundary is documented.
+- Payments / Transactions boundary is documented.
+- Maps / Location boundary is documented.
+- Files / Media boundary is documented.
+- Search / Discovery boundary is documented.
+- Observability / Audit boundary is documented.
+- Remaining open decisions are explicitly preserved.
+
+### Handoff to Implementation
+
+Future implementation work must treat this architecture as the boundary contract.
+
+Implementation may establish concrete technology choices only when they are explicitly decided in the relevant architecture/data/security/design work.
+
+If a task crosses an unresolved boundary, the agent must:
+
+1. Identify the boundary.
+2. State the missing decision.
+3. Avoid speculative implementation.
+4. Continue only with work that does not require the unresolved decision.
+
+### Final Audit Status
+
+**Architecture boundary map: COMPLETE.**
+
+**Implementation readiness: CONDITIONAL.**
+
+The boundaries are documented, but several concrete technology/domain decisions remain intentionally open.
