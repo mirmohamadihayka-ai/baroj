@@ -94,7 +94,7 @@ Infrastructure
   +--> External Integrations
 ```
 
-The architecture does not currently select a database engine, ORM, or persistence provider. Persistence is an infrastructure category, not a technology decision. The exact framework/provider implementation must follow the existing repository configuration and approved architecture decisions.
+PostgreSQL is approved as the primary relational persistence engine by MAI-33. MAI-35 approves Drizzle ORM with node-postgres (pg) and Drizzle Kit as the initial data-access stack. Hosting/provider and other persistence infrastructure remain separately scoped decisions.
 
 ## Architectural Layers
 
@@ -254,7 +254,7 @@ Rules:
 - Domain logic does not depend on ORM-specific APIs.
 - Application code interacts with persistence through explicit contracts where needed.
 - Infrastructure owns persistence implementations.
-- The specific ORM/data-access technology remains an explicit project decision until selected.
+- The approved data-access technology is Drizzle ORM + node-postgres (pg), isolated inside Infrastructure by MAI-35.
 - Database schema and ownership must be documented before production persistence expands.
 
 ## External Integration Boundary
@@ -1777,7 +1777,8 @@ Therefore:
 ### Open Decisions
 
 - Database engine/configuration — PostgreSQL approved by MAI-33; hosting/provider remains open.
-- ORM/data-access implementation — unresolved.
+- ORM/data-access implementation — Drizzle ORM + node-postgres (pg) + Drizzle Kit approved by MAI-35.
+- PostgreSQL hosting/provider remains unresolved.
 - Property / Listings module boundary.
 - Canonical property/listing schema.
 - Search result read model.
@@ -2284,3 +2285,48 @@ If a task crosses an unresolved boundary, the agent must:
 **Implementation readiness: CONDITIONAL.**
 
 The boundaries are documented, but several concrete technology/domain decisions remain intentionally open.
+
+
+## MAI-35 — Data Access Layer / ORM Decision
+
+### Decision
+
+Baroj uses **Drizzle ORM + node-postgres (pg)** for PostgreSQL data access, with **Drizzle Kit** for versioned database migrations.
+
+### Boundary
+
+The approved flow is:
+
+```text
+Application Use Case
+        |
+        v
+Repository Contract
+        |
+        v
+Infrastructure Repository
+        |
+        v
+Drizzle ORM
+        |
+        v
+node-postgres (pg)
+        |
+        v
+PostgreSQL
+```
+
+### Rules
+
+- Drizzle and pg are Infrastructure-only dependencies.
+- Application and Domain code must not import ORM/database client types.
+- Database rows must be mapped inside Infrastructure to application contracts.
+- Production schema changes use reviewed, versioned migrations.
+- Raw SQL is allowed only inside Infrastructure and must remain parameterized.
+- Browser/client code must never import database access modules.
+- Do not introduce another ORM/query builder without a new architecture decision.
+- Hosting/provider, pooling, canonical Property/Listings schema, and search semantics remain separately scoped decisions.
+
+### Scope Guard
+
+MAI-35 does not expand the Property Search read model and does not authorize ranking, fuzzy search, geospatial search, pagination, caching, queues, or a database hosting provider.
