@@ -4,7 +4,7 @@
 
 Define the smallest repository/search contract required by the Property Search application use case.
 
-This document establishes the contract boundary only. It does not select a database, ORM, search engine, external provider, schema technology, or persistence implementation.
+This document establishes the contract boundary only. PostgreSQL is approved as the persistence engine by MAI-33; ORM, schema, search engine, external provider, and concrete persistence implementation remain open.
 
 ## Source Documents
 
