@@ -191,6 +191,10 @@ Material conflicts must be surfaced rather than silently resolved by guesswork.
 - Review the final diff.
 - Update durable project documentation when a project-wide decision changes.
 
+## Current Property Search Backend Slice
+
+The Property Search application use case is implemented under `features/property-search/application/` and depends on an injectable repository/search contract. It maps validated criteria to success, empty, or safe failure results. No concrete database, ORM, provider, ranking, or pagination strategy is approved yet.
+
 ## Current AI Development Layer
 
 The active AI execution layer is:
