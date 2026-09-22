@@ -53,7 +53,13 @@ docs/
 ├── 12-baroj-brain.md
 ├── 13-memory.md
 ├── 14-prompts.md
-└── 15-agents.md
+├── 15-agents.md
+├── 16-development-protocol.md
+├── 17-github-linear-workflow.md
+├── 18-ai-safety-quality.md
+├── 19-backend-data-implementation-plan.md
+├── 20-property-listings-search-read-model.md
+└── 21-property-search-application-contract.md
 ```
 
 ## Context Routing
@@ -84,17 +90,18 @@ Use the smallest relevant set:
 - `docs/08-components.md`
 - `docs/19-backend-data-implementation-plan.md`
 - `docs/20-property-listings-search-read-model.md`
+- `docs/21-property-search-application-contract.md`
 
 ### AI / Agent Work
 
 - `docs/09-ai-rules.md`
-- `docs/16-development-protocol.md`
-- `docs/17-github-linear-workflow.md`
-- `docs/18-ai-safety-quality.md`
 - `docs/12-baroj-brain.md`
 - `docs/13-memory.md`
 - `docs/14-prompts.md`
 - `docs/15-agents.md`
+- `docs/16-development-protocol.md`
+- `docs/17-github-linear-workflow.md`
+- `docs/18-ai-safety-quality.md`
 
 ## Technology Direction
 
@@ -108,12 +115,13 @@ Approved technology direction includes:
 - Tailwind CSS and project design tokens
 - shadcn/ui where appropriate
 - Zod at untrusted boundaries
-- PostgreSQL
-- Repository-established data access layer
+- Repository-established data access layer when configured
 - Vitest / React Testing Library / Playwright when configured
 - Vercel when configured
 - Sentry when configured
 - PostHog when configured and privacy-approved
+
+**Database engine, ORM, and persistence provider remain unresolved unless explicitly approved elsewhere.**
 
 Do not invent package versions or upgrade dependencies during unrelated tasks.
 
@@ -194,6 +202,8 @@ The active AI execution layer is:
 - `docs/17-github-linear-workflow.md` — delivery traceability
 - `docs/18-ai-safety-quality.md` — safety and quality gates
 - `docs/19-backend-data-implementation-plan.md` — backend/data implementation sequence and decision gates
+- `docs/20-property-listings-search-read-model.md` — search read-model ownership and minimum result concepts
+- `docs/21-property-search-application-contract.md` — application input/result contract and use-case boundary
 
 ## Quick Decision Guide
 
@@ -207,6 +217,8 @@ If unsure where a rule belongs:
 - Engineering rule → `docs/06-coding-rules.md`
 - Technology decision → `docs/07-tech-stack.md`
 - Backend/data plan → `docs/19-backend-data-implementation-plan.md`
+- Search read-model contract → `docs/20-property-listings-search-read-model.md`
+- Property Search application contract/use case → `docs/21-property-search-application-contract.md`
 - Component rule → `docs/08-components.md`
 - AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md` / `docs/16-development-protocol.md` / `docs/18-ai-safety-quality.md`
 - Prompt protocol → `docs/14-prompts.md`
@@ -223,4 +235,4 @@ Keep this file concise. Do not duplicate detailed Brain content here.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-21
+**Last Updated:** 2026-08-25
