@@ -20,6 +20,8 @@ Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/
 - Prefer deterministic validation around model output.
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Inspect existing AI patterns and memory boundaries.
 2. Define input, output, failure, and safety contracts.
 3. Implement with existing infrastructure.
