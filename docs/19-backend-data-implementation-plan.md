@@ -360,3 +360,8 @@ MAI-36 PostgreSQL Infrastructure implementation is in place: centralized databas
 ## Next Gate
 
 **MAI-37 — Migration validation + PostgreSQL integration verification.**
+
+
+## MAI-37 Status
+
+MAI-37 completed the source-level validation gate and hardened lazy database initialization. The package-lock is stale relative to the approved MAI-36 package manifest, and PostgreSQL migration/integration validation remains blocked until npm dependency installation and an approved PostgreSQL development database are available.
