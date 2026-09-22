@@ -542,6 +542,122 @@ An AI integration is complete when:
 - AI observability implementation.
 - AI cost/rate-limit policy.
 
+## Observability & Audit Boundary
+
+### Purpose
+
+Define the future boundary for operational observability, application telemetry, security-relevant audit records, and diagnostic information without inventing vendors, event schemas, retention periods, or logging infrastructure.
+
+### Ownership
+
+Observability / Audit is responsible for:
+
+- Operational telemetry contracts.
+- Application diagnostics and health signals.
+- Security-relevant audit records where explicitly required.
+- Correlation and traceability contracts.
+- Observability data access boundaries.
+
+Business modules remain owners of their business state. Observability must not become a shadow source of truth for domain data.
+
+### Boundary
+
+```text
+Application / Domain / Infrastructure
+              |
+              v
+Observability Contract
+              |
+       +------+------+
+       |             |
+       v             v
+Operational       Audit
+Telemetry         Records
+       |             |
+       +------+------+
+              |
+              v
+Observability Infrastructure
+```
+
+### Operational Telemetry vs Audit
+
+Operational telemetry exists to understand system behavior, performance, failures, and health.
+
+Audit records exist to provide an accountable record of security-sensitive or otherwise explicitly auditable actions.
+
+They are related but must not be treated as interchangeable data.
+
+### Logging Rules
+
+Application and infrastructure code may emit approved diagnostic information through the observability boundary.
+
+Do not log:
+
+- Secrets or credentials.
+- Authentication tokens.
+- Sensitive payment data.
+- Unnecessary precise location data.
+- Raw private communication content.
+- Unvalidated or sensitive AI payloads.
+- Personal data unless explicitly required and approved.
+
+Do not invent log fields, event names, severity taxonomies, or retention periods as system-wide standards before they are defined.
+
+### Security & Audit
+
+Security-sensitive actions may require audit records.
+
+Audit requirements must be driven by explicit security, legal, privacy, and product decisions.
+
+Audit records must not be used as a substitute for canonical domain state.
+
+### AI Boundary
+
+AI operations may produce approved telemetry for latency, failures, usage, and safety monitoring.
+
+Raw prompts, raw model outputs, or user-provided sensitive content must not be logged by default.
+
+Any AI audit or observability data must follow the same privacy and security boundaries as the underlying capability.
+
+### Privacy
+
+Observability data can contain sensitive information even when it is not canonical business data.
+
+Collection must follow data minimization and approved access controls.
+
+Retention, deletion, export, and access requirements remain explicit decisions.
+
+### Infrastructure
+
+Logging, metrics, tracing, error tracking, audit storage, and monitoring providers are infrastructure concerns.
+
+Provider-specific SDKs and APIs must not leak into domain logic.
+
+### Definition of Done
+
+The Observability & Audit boundary is ready for implementation only when:
+
+- Operational telemetry responsibilities are explicit.
+- Audit responsibilities are explicit.
+- Sensitive-data logging rules are approved.
+- Correlation/traceability requirements are defined.
+- Access and retention requirements are documented.
+- Infrastructure/provider boundaries are approved.
+- AI observability behavior is bounded.
+
+### Open Decisions
+
+- Observability data model.
+- Audit event model.
+- Logging policy.
+- Metrics and tracing strategy.
+- Error tracking strategy.
+- Retention/deletion policy.
+- Access-control model.
+- Alerting strategy.
+- External observability providers.
+
 ## Search & Discovery Boundary
 
 ### Purpose
