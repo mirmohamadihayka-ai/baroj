@@ -276,6 +276,19 @@ Before implementing a concrete repository:
 - [ ] Query semantics are explicitly approved where implementation depends on them.
 - [ ] The concrete implementation remains behind the contract.
 
+## Implementation Status
+
+The first application use-case slice is implemented in `features/property-search/application/`.
+
+Implemented:
+- normalized criteria validation before repository invocation
+- dependency-injected repository contract
+- success / empty / failure result mapping
+- safe application error mapping
+- protection against repository exceptions leaking outward
+
+Still intentionally open: persistence, provider, ranking, pagination, freshness, and exact data-source strategy.
+
 ## Definition of Done
 
 The repository/search contract is ready when:
@@ -311,6 +324,6 @@ The repository/search contract is ready when:
 ## Version
 
 **Version:** Production V1  
-**Status:** Active  
+**Status:** Active — application slice implemented  
 **Owner:** Baroj Core Team  
 **Last Updated:** 2026-08-25
