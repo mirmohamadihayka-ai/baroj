@@ -30,7 +30,7 @@ This document is a decision guide for developers and AI coding agents. Exact ver
 | Forms | React Hook Form when form complexity justifies it |
 | Server/client data | Framework-native server patterns; TanStack Query when client caching is actually required |
 | State | Local state first; Zustand only for justified shared client state |
-| Database | PostgreSQL |
+| Database | Unresolved — do not select a database engine from this document |
 | ORM/data layer | Use the repository's established ORM/data access layer; do not introduce a second ORM without approval |
 | API | Typed, documented HTTP APIs using the established application boundary |
 | Testing | Vitest, React Testing Library, Playwright when configured |
@@ -38,6 +38,8 @@ This document is a decision guide for developers and AI coding agents. Exact ver
 | Deployment | Vercel when consistent with the project deployment configuration |
 | Observability | Sentry when configured |
 | Product analytics | PostHog when configured and privacy-approved |
+
+The previous PostgreSQL entry is intentionally not treated as an approved implementation decision. Architecture currently keeps persistence/data-source technology unresolved.
 
 ## AI and External Services
 
@@ -99,6 +101,7 @@ When documentation and the actual repository configuration disagree, the reposit
 - `06-coding-rules.md`
 - `08-components.md`
 - `09-ai-rules.md`
+- `19-backend-data-implementation-plan.md`
 
 ## Version
 
