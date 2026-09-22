@@ -351,3 +351,12 @@ These work items provide planning traceability; their presence does not authoriz
 **Status:** Active  
 **Owner:** Baroj Core Team  
 **Last Updated:** 2026-08-23
+
+
+## MAI-36 Status
+
+MAI-36 PostgreSQL Infrastructure implementation is in place: centralized database client, Drizzle read-model schema, Property Search PostgreSQL repository, and Drizzle Kit configuration. The remaining gates are npm dependency/lockfile validation, typecheck/build, PostgreSQL integration validation, and the first reviewed durable migration.
+
+## Next Gate
+
+**MAI-37 — Migration validation + PostgreSQL integration verification.**
