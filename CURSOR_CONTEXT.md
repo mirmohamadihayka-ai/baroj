@@ -122,7 +122,7 @@ Approved technology direction includes:
 - Sentry when configured
 - PostHog when configured and privacy-approved
 
-**Database engine, ORM, and persistence provider remain unresolved unless explicitly approved elsewhere.**
+**PostgreSQL is approved by MAI-33. Drizzle ORM + node-postgres (`pg`) + Drizzle Kit are approved by MAI-35. Hosting/provider and remaining persistence decisions stay separately scoped.**
 
 Do not invent package versions or upgrade dependencies during unrelated tasks.
 
@@ -193,7 +193,7 @@ Material conflicts must be surfaced rather than silently resolved by guesswork.
 
 ## Current Property Search Backend Slice
 
-The Property Search application use case is implemented under `features/property-search/application/` and depends on an injectable repository/search contract. It maps validated criteria to success, empty, or safe failure results. No concrete database, ORM, provider, ranking, or pagination strategy is approved yet.
+The Property Search application use case is implemented under `features/property-search/application/` and depends on an injectable repository/search contract. It maps validated criteria to success, empty, or safe failure results. PostgreSQL is approved as the persistence engine; MAI-35 approves Drizzle ORM + node-postgres (`pg`) + Drizzle Kit. No provider, ranking, pagination, or non-trivial search semantics are approved.
 
 ## Current AI Development Layer
 
@@ -210,6 +210,9 @@ The active AI execution layer is:
 - `docs/20-property-listings-search-read-model.md` — search read-model ownership and minimum result concepts
 - `docs/21-property-search-application-contract.md` — application input/result contract and use-case boundary
 - `docs/22-property-search-repository-contract.md` — repository/search contract and infrastructure boundary
+- `docs/23-persistence-data-source-decision.md` — PostgreSQL persistence decision
+- `docs/24-property-search-postgresql-read-model.md` — minimum PostgreSQL read model
+- `docs/25-data-access-layer-decision.md` — MAI-35 data-access decision
 
 ## Quick Decision Guide
 
@@ -226,6 +229,9 @@ If unsure where a rule belongs:
 - Search read-model contract → `docs/20-property-listings-search-read-model.md`
 - Property Search application contract/use case → `docs/21-property-search-application-contract.md`
 - Property Search repository/search contract → `docs/22-property-search-repository-contract.md`
+- Persistence engine → `docs/23-persistence-data-source-decision.md`
+- PostgreSQL read model → `docs/24-property-search-postgresql-read-model.md`
+- Data access / ORM → `docs/25-data-access-layer-decision.md`
 - Component rule → `docs/08-components.md`
 - AI behavior → `docs/09-ai-rules.md` / `docs/15-agents.md` / `docs/16-development-protocol.md` / `docs/18-ai-safety-quality.md`
 - Prompt protocol → `docs/14-prompts.md`
@@ -242,7 +248,7 @@ Keep this file concise. Do not duplicate detailed Brain content here.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-25
+**Last Updated:** 2026-08-26
 
 
 ## MAI-33 Persistence Decision
@@ -253,3 +259,8 @@ PostgreSQL is the approved primary relational persistence engine. Keep SQL/datab
 ## MAI-34 Property Search Read Model
 
 The minimum PostgreSQL read model is documented in `docs/24-property-search-postgresql-read-model.md`: id, property_type, location, price, and search_text. Keep it as a read projection; do not treat it as canonical Property / Listings data. ORM, migration tooling, and non-trivial query semantics remain unresolved.
+
+
+## MAI-35 Data Access Decision
+
+Use Drizzle ORM with node-postgres (`pg`) inside Infrastructure. Use Drizzle Kit for versioned migrations. Do not import database clients or ORM types into Application/Domain/Presentation, and do not add another ORM without a new decision.
