@@ -12,6 +12,8 @@ Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/
 - Scope: [affected area]
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Reproduce or inspect the reported failure.
 2. Identify the root cause before editing.
 3. Implement the smallest correct fix.
