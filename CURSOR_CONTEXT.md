@@ -218,6 +218,7 @@ The active AI execution layer is:
 - `docs/24-property-search-postgresql-read-model.md` — minimum PostgreSQL read model
 - `docs/25-data-access-layer-decision.md` — MAI-35 data-access decision
 - `docs/26-mai-36-postgresql-infrastructure.md` — MAI-36 PostgreSQL Infrastructure implementation and validation gates
+- `docs/27-mai-37-migration-validation.md` — MAI-37 migration and PostgreSQL integration validation gate
 
 ## Quick Decision Guide
 
@@ -274,3 +275,8 @@ Use Drizzle ORM with node-postgres (`pg`) inside Infrastructure. Use Drizzle Kit
 ## MAI-36 PostgreSQL Infrastructure
 
 The PostgreSQL Infrastructure boundary is implemented under `infrastructure/database/`, with a Drizzle schema for `property_search_read_model`, a centralized `pg` connection, and a Property Search repository adapter. Free-text `query` remains intentionally unsupported until its matching semantics are explicitly approved. Migration, lockfile, typecheck/build, and PostgreSQL integration validation remain pending.
+
+
+## MAI-37 Validation Gate
+
+MAI-37 hardened database initialization to lazy runtime creation. The current package-lock is stale relative to package.json and must be regenerated with npm. PostgreSQL migration and integration checks remain pending until an approved database environment is available.
