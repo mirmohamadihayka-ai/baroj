@@ -4,7 +4,7 @@
 
 Define the minimum data contract required for Property Search to return real results without creating a speculative full Property / Listings schema.
 
-This document establishes ownership and conceptual boundaries. It does not select a database, ORM, provider, schema technology, or search engine.
+This document establishes ownership and conceptual boundaries. PostgreSQL is approved as the persistence engine by MAI-33, but this document does not define its schema, ORM, provider, or search engine.
 
 ## Decision
 
