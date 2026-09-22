@@ -71,6 +71,7 @@ A lower-priority source must not silently override a higher-priority source.
 | `16-development-protocol.md` | Mandatory development lifecycle and validation protocol |
 | `17-github-linear-workflow.md` | GitHub/Linear delivery and traceability workflow |
 | `18-ai-safety-quality.md` | AI safety, quality, and release gates |
+| `19-backend-data-implementation-plan.md` | Ordered backend/data implementation plan and decision gates |
 
 ## Update Rules
 
@@ -131,6 +132,7 @@ Avoid generic advice that does not change implementation behavior.
 - `16-development-protocol.md`
 - `17-github-linear-workflow.md`
 - `18-ai-safety-quality.md`
+- `19-backend-data-implementation-plan.md`
 
 ## Version
 
