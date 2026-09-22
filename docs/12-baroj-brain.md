@@ -74,6 +74,7 @@ A lower-priority source must not silently override a higher-priority source.
 | `19-backend-data-implementation-plan.md` | Ordered backend/data implementation plan and decision gates |
 | `20-property-listings-search-read-model.md` | Property / Listings search read-model ownership and minimum result contract |
 | `21-property-search-application-contract.md` | Property Search application input/result contract and use-case boundary |
+| `22-property-search-repository-contract.md` | Property Search repository/search contract and infrastructure boundary |
 
 ## Update Rules
 
@@ -137,6 +138,7 @@ Avoid generic advice that does not change implementation behavior.
 - `19-backend-data-implementation-plan.md`
 - `20-property-listings-search-read-model.md`
 - `21-property-search-application-contract.md`
+- `22-property-search-repository-contract.md`
 
 ## Version
 
