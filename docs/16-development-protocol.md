@@ -171,19 +171,11 @@ Agents must not:
 - Make destructive production changes without explicit authorization.
 - Ignore higher-priority project rules.
 
-## Source-of-Truth Order
+## Source-of-Truth
 
-When instructions conflict, use:
+`AGENTS.md` is the canonical repository execution contract and owns the project-wide instruction hierarchy. This protocol defines execution steps only and must not introduce a competing hierarchy.
 
-1. Explicit approved task requirements.
-2. `AGENTS.md`.
-3. `CURSOR_CONTEXT.md`.
-4. Relevant Brain documents.
-5. Repository configuration and existing architecture.
-6. Existing implementation patterns.
-7. AI inference.
-
-AI inference must never silently override authoritative project context.
+Follow `AGENTS.md` when instructions conflict and surface material inconsistencies rather than silently overriding them.
 
 ## Cross References
 
@@ -200,4 +192,4 @@ AI inference must never silently override authoritative project context.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-21
+**Last Updated:** 2026-09-23

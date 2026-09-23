@@ -6,6 +6,8 @@ Define the standard task-prompt protocol for Baroj AI coding agents, with Cursor
 
 The goal is predictable execution, minimal ambiguity, controlled scope, and verifiable results.
 
+All prompts operate under `AGENTS.md` and the relevant Brain documents. A prompt is task input, not permission to override repository rules, architecture, security controls, or validation requirements.
+
 ## Principles
 
 1. Context before code.
@@ -60,12 +62,13 @@ Validation:
 - Review final diff
 
 Execution:
-1. Inspect
-2. Plan
-3. Implement
-4. Validate
-5. Review
-6. Report
+1. Understand
+2. Inspect
+3. Plan
+4. Implement
+5. Validate
+6. Review
+7. Report
 ```
 
 ## Context Selection
@@ -151,7 +154,7 @@ Never manufacture requirements to avoid asking a necessary question.
 
 ## Execution Protocol
 
-Every non-trivial prompt follows:
+Every non-trivial prompt follows the canonical lifecycle:
 
 ```text
 UNDERSTAND
@@ -221,4 +224,4 @@ When a prompt conflicts with an approved project rule:
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-09-23

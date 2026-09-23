@@ -60,7 +60,10 @@ docs/
 ├── 19-backend-data-implementation-plan.md
 ├── 20-property-listings-search-read-model.md
 ├── 21-property-search-application-contract.md
-└── 22-property-search-repository-contract.md
+├── 22-property-search-repository-contract.md
+├── 23-persistence-data-source-decision.md
+├── 24-property-search-postgresql-read-model.md
+└── 25-data-access-layer-decision.md
 ```
 
 ## Context Routing
@@ -85,8 +88,8 @@ Use the smallest relevant set:
 
 - `docs/05-architecture.md`
 - `docs/05-folder-structure.md`
-- `docs/06-frontend.md`
-- `docs/06-coding-rules.md`
+- `docs/06-coding-rules.md` — engineering rules
+- `docs/06-frontend.md` — frontend implementation guidance
 - `docs/07-tech-stack.md`
 - `docs/08-components.md`
 - `docs/19-backend-data-implementation-plan.md`
@@ -166,16 +169,9 @@ Before editing:
 4. Search for existing patterns.
 5. Define scope and acceptance criteria.
 
-## Source-of-Truth Priority
+## Source-of-Truth
 
-1. Higher-priority platform/system instructions
-2. Explicit approved task requirements
-3. `AGENTS.md`
-4. `CURSOR_CONTEXT.md`
-5. Relevant Brain document
-6. Repository configuration and implementation
-7. Existing local patterns
-8. AI inference
+`AGENTS.md` is the canonical repository execution contract and defines the project-owned instruction hierarchy. This file is a navigation layer and must not introduce a competing hierarchy.
 
 Material conflicts must be surfaced rather than silently resolved by guesswork.
 
@@ -224,6 +220,7 @@ If unsure where a rule belongs:
 - UX behavior → `docs/04-ux-rules.md`
 - Architecture → `docs/05-architecture.md`
 - Engineering rule → `docs/06-coding-rules.md`
+- Frontend implementation guidance → `docs/06-frontend.md`
 - Technology decision → `docs/07-tech-stack.md`
 - Backend/data plan → `docs/19-backend-data-implementation-plan.md`
 - Search read-model contract → `docs/20-property-listings-search-read-model.md`
@@ -248,7 +245,7 @@ Keep this file concise. Do not duplicate detailed Brain content here.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-26
+**Last Updated:** 2026-09-23
 
 
 ## MAI-33 Persistence Decision

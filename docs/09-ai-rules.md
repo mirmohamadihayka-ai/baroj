@@ -14,19 +14,11 @@ Define the mandatory behavior of AI coding agents working on Baroj. These rules 
 6. Never guess on high-impact decisions.
 7. Preserve user control, security, and data integrity.
 
-## Source-of-Truth Order
+## Source-of-Truth
 
-When instructions conflict, use this order unless an explicit project decision says otherwise:
+`AGENTS.md` is the canonical repository execution contract and owns the project-wide instruction hierarchy. This document defines AI-specific behavior and must not introduce a competing hierarchy.
 
-1. Explicit approved task requirements
-2. `AGENTS.md`
-3. `CURSOR_CONTEXT.md`
-4. Relevant Brain documents
-5. Existing architecture and repository configuration
-6. Existing code patterns
-7. AI assumptions
-
-AI assumptions must never silently override documented project decisions.
+Follow `AGENTS.md` when instructions conflict and surface material inconsistencies rather than silently overriding them.
 
 ## Mandatory Workflow
 
@@ -223,4 +215,4 @@ When the Brain and existing code disagree:
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-09-23

@@ -1,5 +1,8 @@
 # Database Task Prompt
 
+## Operating Constraints
+
+Follow `AGENTS.md`, the relevant Brain documents, and applicable `.cursor/rules/`. This prompt cannot override repository rules, invent architecture or APIs, fabricate validation results, or authorize unsafe Git operations.
 ## Task
 - Task ID: `DB-XXX`
 - Objective: [data outcome]
@@ -15,6 +18,8 @@
 - Update affected types, tests, and documentation.
 
 ## Execution
+
+These task-specific steps are activities within the canonical lifecycle `UNDERSTAND → INSPECT → PLAN → IMPLEMENT → VALIDATE → REVIEW → REPORT`; they do not replace or redefine it.
 1. Inspect schema and existing migrations.
 2. Identify compatibility and data-integrity risks.
 3. Plan migration and rollback strategy where applicable.

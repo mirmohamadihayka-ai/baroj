@@ -29,19 +29,11 @@ Before non-trivial work, read in this order:
 
 Do not load the entire Brain when a smaller relevant context is sufficient.
 
-## Source-of-Truth Priority
+## Source-of-Truth
 
-Use this priority when sources conflict:
+`AGENTS.md` is the canonical repository execution contract and owns the project-wide instruction hierarchy. This document provides the detailed agent protocol and must not introduce a competing hierarchy.
 
-1. Explicit approved task requirements.
-2. `AGENTS.md`.
-3. `CURSOR_CONTEXT.md`.
-4. Relevant Brain document.
-5. Repository configuration and architecture.
-6. Existing implementation patterns.
-7. AI inference.
-
-Lower-priority context must not silently override higher-priority decisions.
+Follow `AGENTS.md` when sources conflict and surface material inconsistencies rather than silently overriding them.
 
 ## Execution Protocol
 
@@ -205,4 +197,4 @@ When implementation creates or changes a durable project-wide decision:
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-09-23

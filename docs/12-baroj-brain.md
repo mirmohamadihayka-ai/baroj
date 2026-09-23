@@ -34,17 +34,9 @@ The numbered documents are organized by responsibility. An AI agent should read 
 
 ## Source-of-Truth Model
 
-Use this priority for implementation decisions:
+`AGENTS.md` is the canonical repository execution contract and owns the project-wide instruction hierarchy. This document explains Brain ownership and routing; it must not introduce a competing hierarchy.
 
-1. Explicit approved task requirements
-2. `AGENTS.md`
-3. `CURSOR_CONTEXT.md`
-4. Relevant Brain document
-5. Repository configuration and architecture
-6. Existing code patterns
-7. AI inference
-
-A lower-priority source must not silently override a higher-priority source.
+For implementation conflicts, follow the hierarchy defined by `AGENTS.md` and surface material conflicts rather than silently overriding them.
 
 ## Document Ownership
 
@@ -57,8 +49,8 @@ A lower-priority source must not silently override a higher-priority source.
 | `04-ux-rules.md` | Interaction and UX rules |
 | `05-architecture.md` | System architecture, layers, boundaries, and durable architecture decisions |
 | `05-folder-structure.md` | Repository organization |
-| `06-coding-rules.md` | Engineering rules |
-| `06-frontend.md` | Frontend implementation guidance |
+| `06-coding-rules.md` | Engineering rules and coding constraints; authoritative for general engineering practice |
+| `06-frontend.md` | Frontend implementation guidance; authoritative for frontend-specific implementation details within the general engineering rules |
 | `07-tech-stack.md` | Technology decisions |
 | `08-components.md` | Component architecture |
 | `09-ai-rules.md` | AI agent behavior |
@@ -148,7 +140,7 @@ Avoid generic advice that does not change implementation behavior.
 **Version:** Production V1  
 **Status:** Active  
 **Owner:** Baroj Core Team  
-**Last Updated:** 2026-08-26
+**Last Updated:** 2026-09-23
 
 
 ## MAI-33
