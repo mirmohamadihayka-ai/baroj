@@ -78,6 +78,7 @@ A lower-priority source must not silently override a higher-priority source.
 | `23-persistence-data-source-decision.md` | PostgreSQL persistence-engine decision |
 | `24-property-search-postgresql-read-model.md` | Minimum PostgreSQL Property Search read-model contract |
 | `25-data-access-layer-decision.md` | MAI-35 Drizzle ORM, node-postgres, and migration-stack decision |
+| `26-mai-36-postgresql-infrastructure.md` | MAI-36 PostgreSQL Infrastructure implementation and validation gates |
 
 ## Update Rules
 
@@ -164,3 +165,8 @@ Avoid generic advice that does not change implementation behavior.
 ## MAI-35
 
 `docs/25-data-access-layer-decision.md` records the accepted Drizzle ORM + node-postgres (`pg`) + Drizzle Kit data-access decision. Hosting/provider, pooling, canonical Property/Listings schema, and search semantics remain separately scoped.
+
+
+## MAI-36
+
+`docs/26-mai-36-postgresql-infrastructure.md` records the implemented PostgreSQL Infrastructure boundary and its remaining validation gates. The first durable migration remains gated until dependency installation/lockfile validation and PostgreSQL integration validation are available.

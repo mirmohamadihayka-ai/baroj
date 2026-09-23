@@ -60,7 +60,11 @@ docs/
 ├── 19-backend-data-implementation-plan.md
 ├── 20-property-listings-search-read-model.md
 ├── 21-property-search-application-contract.md
-└── 22-property-search-repository-contract.md
+├── 22-property-search-repository-contract.md
+├── 23-persistence-data-source-decision.md
+├── 24-property-search-postgresql-read-model.md
+├── 25-data-access-layer-decision.md
+└── 26-mai-36-postgresql-infrastructure.md
 ```
 
 ## Context Routing
@@ -213,6 +217,7 @@ The active AI execution layer is:
 - `docs/23-persistence-data-source-decision.md` — PostgreSQL persistence decision
 - `docs/24-property-search-postgresql-read-model.md` — minimum PostgreSQL read model
 - `docs/25-data-access-layer-decision.md` — MAI-35 data-access decision
+- `docs/26-mai-36-postgresql-infrastructure.md` — MAI-36 PostgreSQL Infrastructure implementation and validation gates
 
 ## Quick Decision Guide
 
@@ -264,3 +269,8 @@ The minimum PostgreSQL read model is documented in `docs/24-property-search-post
 ## MAI-35 Data Access Decision
 
 Use Drizzle ORM with node-postgres (`pg`) inside Infrastructure. Use Drizzle Kit for versioned migrations. Do not import database clients or ORM types into Application/Domain/Presentation, and do not add another ORM without a new decision.
+
+
+## MAI-36 PostgreSQL Infrastructure
+
+The PostgreSQL Infrastructure boundary is implemented under `infrastructure/database/`, with a Drizzle schema for `property_search_read_model`, a centralized `pg` connection, and a Property Search repository adapter. Free-text `query` remains intentionally unsupported until its matching semantics are explicitly approved. Migration, lockfile, typecheck/build, and PostgreSQL integration validation remain pending.
